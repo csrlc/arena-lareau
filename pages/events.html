@@ -1,0 +1,53 @@
+    <main id="events" class="container container-events main-events" data-page="events">
+        <div class="events-wrapper">
+            <h2 class="header-font" style="text-align: center; margin-bottom: 20px;">
+                Calendrier des Événements
+            </h2>
+            
+            <!-- Two Month Calendar Grid -->
+            <div class="events-calendar-grid-two-months">
+                <!-- Month 1 -->
+                <div class="events-month-container">
+                    <h3 id="month1-title" class="events-month-header"></h3>
+                    <div class="events-weekdays-mini">
+                        <div>Dim</div><div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div>
+                    </div>
+                    <div id="month1-days" class="events-days-grid-mini"></div>
+                </div>
+                <!-- Month 2 -->
+                <div class="events-month-container">
+                    <h3 id="month2-title" class="events-month-header"></h3>
+                    <div class="events-weekdays-mini">
+                        <div>Dim</div><div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div>
+                    </div>
+                    <div id="month2-days" class="events-days-grid-mini"></div>
+                </div>
+            </div>
+
+            <div class="events-legend">
+                <div class="legend-item">
+                    <div class="legend-box" style="background: #ffd700;"></div>
+                    <span>Événement en cours</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background: #5ecf71;"></div>
+                    <span>Événement à venir / Jour férié</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box" style="background: #4a90e2;"></div>
+                    <span>Événement complété</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box event-today" style="border: 2px solid #ff0000;"></div>
+                    <span>Aujourd'hui</span>
+                </div>
+            </div>
+            
+            <div class="events-list">
+                <h3>Détails des événements</h3>
+                <div id="events-details">
+                    <!-- Event details will be populated by events.js -->
+                </div>
+            </div>
+        </div>
+    </main>

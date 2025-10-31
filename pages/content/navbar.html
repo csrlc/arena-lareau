@@ -1,0 +1,121 @@
+    <main id="navbar" class="container container-navbar active" data-page="navbar">
+      <header class="site-header">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+          
+          <section class="nav-left logo-section">
+            <!-- Logo Section -->
+            <a href="./index.html" class="site-logo light-logo" data-theme="light">
+              <!-- Using placeholder image -->
+              <img src="../../assets/images/logos/arena-light.png" alt="Aréna Régional Lareau" class="theme-sensitive-logo">
+            </a>
+            <a href="./index.html" class="site-logo dark-logo" data-theme="dark">
+              <!-- Using placeholder image -->
+              <img src="../../assets/images/logos/arena-dark.png" alt="Aréna Régional Lareau" class="theme-sensitive-logo">
+            </a>
+          </section>
+    
+          <!-- Top Row Left -->
+          <section class="top-nav top-nav-left container-galeries">
+            <!-- Note: Typo 'fench' in original HTML, preserved here -->
+            <div class="galeries-trigger galeries-trigger-fench fench-active">
+              <button id="galeries" for="galeries-sidebar" data-i18n="galeries" data-i18n-json='{"fr":"Galeries Photos"}'>Galeries Photos
+                <i class="fas fa-caret-down"></i>
+              </button>
+            </div>
+            <!-- Note: Typo 'dive' in original HTML, corrected to 'div' -->
+            <div class="galeries-trigger galeries-trigger-english english-active">
+              <button id="galeries-en" for="galeries-sidebar" data-i18n="galeries" data-i18n-json='{"en":"Photo Galleries"}'>Photo Galleries
+                <i class="fas fa-caret-down"></i>
+              </button>
+            </div>
+          </section>
+
+          <!-- Empty section from HTML -->
+          <section class="side-nav side-nav-right container-galeries-menu"></section>
+    
+          <!-- Gallery Sidebar -->
+          <div id="galeries-sidebar" class="galeries-sidebar">
+            <div class="galeries-menu galeries-menu-french french-active">
+              <h2 class="galeries-title galeries-title-french french-active" data-i18n="galeries-title" data-i18n-json='{"fr":"Galeries Photos"}'>Galeries Photos</h2>
+              <a href="#cpa" data-i18n="cpa-gallery" data-i18n-json='{"fr":"Galerie Photos Patinage Artistique"}'>Galerie Photos Patinage Artistique</a>
+              <a href="#famille" data-i18n="family-gallery" data-i18n-json='{"fr":"Galerie Photos Équipe Familial"}'>Galerie Photos Équipe Familial</a>
+              <a href="#feminin" data-i18n="women-gallery" data-i18n-json='{"fr":"Galerie Photos Hockey (Féminin)"}'>Galerie Photos Hockey (Féminin)</a>
+            </div>
+            <div class="galeries-menu galeries-menu-english english-active">
+              <h2 class="galeries-title galeries-title-english english-active" data-i18n="galeries-title" data-i18n-json='{"en":"Photo Galleries"}'>Photo Galleries</h2>
+              <a href="#cpa" data-i18n="cpa-gallery" data-i18n-json='{"en":"Photo Gallery Artistic Skating"}'>Photo Gallery Artistic Skating</a>
+              <a href="#famille" data-i18n="family-gallery" data-i18n-json='{"en":"Photo Gallery Familial Teams"}'>Photo Gallery Familial Teams</a>
+              <a href="#feminin" data-i18n="women-gallery" data-i18n-json='{"en":"Photo Gallery Hockey (Women)"}'>Photo Gallery Hockey (Women)</a>
+            </div>
+          </div>
+          <!-- End Gallery Sidebar -->
+
+          <!-- Sidebar Overlay -->
+          <div id="sidebar-overlay"></div>
+    
+          <!-- Top Row Right -->
+          <section class="top-nav top-nav-right container-tools">
+            <div class="toolbar">
+              <button id="langToggle" class="btn-toggle">FR</button>
+              <button id="themeToggle" class="btn-toggle" aria-label="Toggle theme">
+                <span class="theme-icon light">☀️</span>
+                <span class="theme-icon dark">🌙</span>
+              </button>
+            </div>
+          </section>
+    
+          <!-- Main Navigation - Left Side -->
+          <section class="main-nav main-nav-left Container-menuitem">
+            <div class="nav-links nav-links-french french-active" role="menubar">
+              <button class="menuitem"><a href="#index" data-target="main-index" role="menuitem" data-i18n="home" data-i18n-json='{"fr":"Accueil","en":"Home"}'>Accueil</a></button>
+              <button class="menuitem"><a href="#events" data-target="main-events" role="menuitem" data-i18n="events" data-i18n-json='{"fr":"Événements","en":"Events"}'>Événements</a></button>
+              <button class="menuitem"><a href="#location" data-target="main-location" role="menuitem" data-i18n="location" data-i18n-json='{"fr":"Location","en":"Rental"}'>Location</a></button>
+              <button class="menuitem"><a href="https://secure3.xpayrience.com/arena_regional_lareau" target="_blank" data-new-tab="true" role="menuitem" data-i18n="tickets" data-i18n-json='{"fr":"Achat de billets","en":"Tickets"}'>Achat de billets</a></button>
+            </div>
+            <div class="nav-links nav-links-english english-active" role="menubar">
+              <button class="menuitem"><a href="#index" data-target="main-index" role="menuitem" data-i18n="home" data-i18n-json='{"fr":"Accueil","en":"Home"}'>Home</a></button>
+              <button class="menuitem"><a href="#events" data-target="main-events" role="menuitem" data-i18n="events" data-i18n-json='{"fr":"Événements","en":"Events"}'>Events</a></button>
+              <button class="menuitem"><a href="#location" data-target="main-location" role="menuitem" data-i18n="location" data-i18n-json='{"fr":"Location","en":"Rental"}'>Reservation</a></button>
+              <button class="menuitem"><a href="https://secure3.xpayrience.com/arena_regional_lareau" target="_blank" data-new-tab="true" role="menuitem" data-i18n="tickets" data-i18n-json='{"fr":"Achat de billets","en":"Tickets"}'>Buy Tickets</a></button>
+            </div> 
+          </section>
+    
+          <!-- Main Navigation - Right Side (À propos) -->
+          <section class="main-nav main-nav-right">
+            <!-- À propos Dropdown (Desktop) -->
+            <div class="dropdown">
+              <button class="dropdown-toggle" role="menuitem" data-i18n="about" data-i18n-json='{"fr":"À propos","en":"About"}'>
+                <i class="fas fa-bars"></i> À propos
+              </button>
+              <div class="dropdown-menu">
+                <a href="#mission" data-target="main-propos-mission" role="menuitem" data-i18n="mission" data-i18n-json='{"fr":"Notre mission","en":"Our Mission"}'>Notre mission</a>
+                <a href="#equipe" data-target="main-propos-equipe" role="menuitem" data-i18n="equipe" data-i18n-json='{"fr":"L\'équipe","en":"Team"}'>L'équipe</a>
+                <a href="#contact" data-target="main-propos-contacts" role="menuitem" data-i18n="contact" data-i18n-json='{"fr":"Contact","en":"Contact"}'>Contact</a>
+              </div>
+            </div>
+    
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-menu">
+              <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <i class="fas fa-bars"></i>
+              </button>
+              <!-- Re-using dropdown structure for mobile -->
+              <div class="dropdown-menu">
+                <a href="#mission" data-target="main-propos-mission" role="menuitem" data-i18n="mission" data-i18n-json='{"fr":"Notre mission","en":"Our Mission"}'>Notre mission</a>
+                <a href="#equipe" data-target="main-propos-equipe" role="menuitem" data-i18n="equipe" data-i18n-json='{"fr":"L\'équipe","en":"Team"}'>L'équipe</a>
+                <a href="#contact" data-target="main-propos-contacts" role="menuitem" data-i18n="contact" data-i18n-json='{"fr":"Contact","en":"Contact"}'>Contact</a>
+              </div>
+            </div>
+          </section>
+    
+        </nav>
+      </header>
+    
+      <!-- Fullscreen Logo Overlay (from HTML) -->
+      <div class="logo-overlay theme-light" data-theme="light">
+         <!-- <img src="../../assets/images/logos/arena-light.png" alt="Aréna Régional Lareau" class="theme-sensitive-logo"> -->
+      </div>
+      <div class="logo-overlay theme-dark" data-theme="dark">
+         <!-- <img src="../../assets/images/logos/arena-dark.png" alt="Aréna Régional Lareau" class="theme-sensitive-logo"> -->
+      </div>
+    </main>

@@ -1,0 +1,260 @@
+    <!-- Main Content -->
+    <main id="location" class="main-content" data-page="location">
+        <div class="container">
+            <section class="location-hero">
+                <h1 class="header-font">
+                    <span class="french-active">Installation de Hockey</span>
+                    <span class="english-active" style="display:none;">Hockey Facility</span>
+                </h1>
+                <p>
+                    <span class="french-active">Réservez votre glace pour vos entraînements, tournois et événements</span>
+                    <span class="english-active" style="display:none;">Book your ice for training, tournaments and events</span>
+                </p>
+            </section>
+
+            <!-- Ice Rink Visual -->
+            <section class="ice-rink-section">
+                <!-- Selection Controls - Above Rink -->
+                <div class="selection-controls-top">
+                    <button class="ice-select-btn" data-selection="left">
+                        <span class="french-active">Demi-glace gauche</span>
+                        <span class="english-active" style="display:none;">Left Half-Ice</span>
+                    </button>
+                    <button class="ice-select-btn active" data-selection="full">
+                        <span class="french-active">Surface complète</span>
+                        <span class="english-active" style="display:none;">Full Ice</span>
+                    </button>
+                    <button class="ice-select-btn" data-selection="right">
+                        <span class="french-active">Demi-glace droite</span>
+                        <span class="english-active" style="display:none;">Right Half-Ice</span>
+                    </button>
+                </div>
+
+                <div class="ice-rink">
+                    <div class="ice-surface">
+                        <div class="center-line"></div>
+                        <div class="blue-line left"></div>
+                        <div class="blue-line right"></div>
+                        <div class="center-circle"></div>
+                        <div class="mustang-logo center-logo"></div>
+                        
+                        <div class="half-ice-overlay left" data-side="left"></div>
+                        <div class="half-ice-overlay right" data-side="right"></div>
+
+                        <!-- New Booking Button on Rink -->
+                        <button class="booking-trigger-btn on-rink-btn" onclick="document.getElementById('calendar-booking-section').scrollIntoView({behavior: 'smooth'})">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span class="french-active">Réserver maintenant</span>
+                            <span class="english-active" style="display:none;">Book Now</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section class="pricing-section-centered">
+                <h2 class="header-font">
+                    <span class="french-active">Tarification</span>
+                    <span class="english-active" style="display:none;">Pricing</span>
+                </h2>
+                <div class="pricing-content">
+                    <div class="pricing-item">
+                        <h4>
+                            <span class="french-active">Surface complète</span>
+                            <span class="english-active" style="display:none;">Full Ice</span>
+                        </h4>
+                        <div>
+                            <span class="french-active">Tarif standard: 200$/h</span>
+                            <span class="english-active" style="display:none;">Standard rate: $200/hr</span>
+                        </div>
+                        <div>
+                            <span class="french-active">Demi-heure: 150$/30min</span>
+                            <span class="english-active" style="display:none;">Half-hour: $150/30min</span>
+                        </div>
+                    </div>
+                    <div class="pricing-item">
+                        <h4>
+                            <span class="french-active">Demi-glace</span>
+                            <span class="english-active" style="display:none;">Half-Ice</span>
+                        </h4>
+                        <div>
+                            <span class="french-active">Tarif standard: 100$/30min</span>
+                            <span class="english-active" style="display:none;">Standard rate: $100/30min</span>
+                        </div>
+                        <div>
+                            <span class="french-active">Heure complète: 150$/h</span>
+                            <span class="english-active" style="display:none;">Full hour: $150/hr</span>
+                        </div>
+                    </div>
+                    <div class="pricing-notes">
+                        <div class="special-note">
+                            <span class="french-active">* Les tarifs peuvent être sujets à révision</span>
+                            <span class="english-active" style="display:none;">* Rates subject to change</span>
+                        </div>
+                        <div class="special-note">
+                            <span class="french-active">* Des frais supplémentaires peuvent s'appliquer pour les événements exclusifs</span>
+                            <span class="english-active" style="display:none;">* Additional fees may apply for exclusive events</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hours & Pricing -->
+            <section class="info-grid">
+                <div class="hours-section">
+                    <h2 class="header-font">
+                        <span class="french-active">Horaires de la Patinoire</span>
+                        <span class="english-active" style="display:none;">Ice Rink Hours</span>
+                    </h2>
+                    <div class="hours-grid">
+                        <div class="hours-item">
+                            <div class="hours-day">
+                                <span class="french-active">Lundi - Vendredi</span>
+                                <span class="english-active" style="display:none;">Monday - Friday</span>
+                            </div>
+                            <!-- Updated availability -->
+                            <div>09h00 - 16h00</div>
+                        </div>
+                        <div class="hours-item">
+                            <div class="hours-day">
+                                <span class="french-active">Samedi - Dimanche</span>
+                                <span class="english-active" style="display:none;">Saturday - Sunday</span>
+                            </div>
+                            <!-- Updated availability -->
+                            <div>
+                                <span class="french-active">Fermé (Contacter pour événements)</span>
+                                <span class="english-active" style="display:none;">Closed (Contact for events)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hours-section">
+                    <h2 class="header-font">
+                        <span class="french-active">Bar Sportif</span>
+                        <span class="english-active" style="display:none;">Sports Bar</span>
+                    </h2>
+                    <div class="hours-grid">
+                        <div class="hours-item">
+                            <div class="hours-day">
+                                <span class="french-active">Mercredi - Vendredi</span>
+                                <span class="english-active" style="display:none;">Wednesday - Friday</span>
+                            </div>
+                            <div>
+                                <span class="french-active">21h00 - Fermeture</span>
+                                <span class="english-active" style="display:none;">9:00 PM - Closing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hours-section">
+                    <h2 class="header-font">Restaurant</h2>
+                    <div class="hours-grid">
+                        <div class="hours-item">
+                            <div class="hours-day">
+                                <span class="french-active">Lundi - Vendredi</span>
+                                <span class="english-active" style="display:none;">Monday - Friday</span>
+                            </div>
+                            <div>16h30 - 23h30</div>
+                        </div>
+                        <div class="hours-item">
+                            <div class="hours-day">
+                                <span class="french-active">Samedi - Dimanche</span>
+                                <span class="english-active" style="display:none;">Saturday - Sunday</span>
+                            </div>
+                            <div>10h30 - 21h30</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- New Bottom Booking Button -->
+            <section class="bottom-booking-section">
+                <button class="booking-trigger-btn" onclick="document.getElementById('calendar-booking-section').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-calendar-plus"></i>
+                    <span class="french-active">Réserver votre temps de glace</span>
+                    <span class="english-active" style="display:none;">Book Your Ice Time</span>
+                </button>
+            </section>
+
+            <!-- Calendar Booking Section -->
+            <section id="calendar-booking-section" class="calendar-booking-section">
+                <h2 class="header-font">
+                    <span class="french-active">Calendrier de Réservation (Sept-Juin)</span>
+                    <span class="english-active" style="display:none;">Booking Calendar (Sept-June)</span>
+                </h2>
+                <p class="calendar-instructions">
+                    <span class="french-active">Sélectionnez vos dates disponibles (Lun-Ven, 9h-16h)</span>
+                    <span class="english-active" style="display:none;">Select your available dates (Mon-Fri, 9am-4pm)</span>
+                </p>
+
+                <!-- 10-Month Calendar Grid -->
+                <div id="year-calendar-grid" class="year-calendar-grid"></div>
+
+                <!-- Booking Panel -->
+                <div id="booking-panel" class="booking-panel" style="display: none;">
+                    <h3 class="header-font">
+                        <span class="french-active">Sélection des Horaires</span>
+                        <span class="english-active" style="display:none;">Time Selection</span>
+                    </h3>
+                    
+                    <div id="time-schedule-inputs" class="time-schedule-inputs"></div>
+
+                    <form id="newBookingForm" class="new-booking-form">
+                        <h3 class="header-font">
+                            <span class="french-active">Vos Coordonnées</span>
+                            <span class="english-active" style="display:none;">Your Contact Info</span>
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bookingFullName">
+                                    <span class="french-active">Nom complet *</span>
+                                    <span class="english-active" style="display:none;">Full Name *</span>
+                                </label>
+                                <input type="text" id="bookingFullName" name="fullName" required
+                                       placeholder="Jean-Pierre Tremblay">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bookingPhone">
+                                    <span class="french-active">Téléphone *</span>
+                                    <span class="english-active" style="display:none;">Phone *</span>
+                                </label>
+                                <input type="tel" id="bookingPhone" name="phone" required
+                                       placeholder="###-###-####">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookingEmail">
+                                <span class="french-active">Courriel</span>
+                                <span class="english-active" style="display:none;">Email</span>
+                            </label>
+                            <input type="email" id="bookingEmail" name="email"
+                                   placeholder="exemple@email.com">
+                        </div>
+
+                        <div id="booking-form-error" class="form-error" style="display: none;"></div>
+                        <div id="booking-form-success" class="form-success" style="display: none;"></div>
+
+                        <div class="form-actions">
+                            <button type="button" id="clear-selection" class="btn-secondary">
+                                <i class="fas fa-times"></i>
+                                <span class="french-active">Effacer</span>
+                                <span class="english-active" style="display:none;">Clear</span>
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                <span class="french-active">Envoyer la demande</span>
+                                <span class="english-active" style="display:none;">Send Request</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+    <!-- End of Main Content -->
