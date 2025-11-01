@@ -176,15 +176,13 @@ h1,h2,h3{font-family:'Black Ops One Regular',sans-serif}
 /* Scroll Controls */
 .scroll-indicator {
   position: fixed;
-  bottom: calc(8vh + 20px);
-  right: 20px;
   background: var(--content-bg);
   padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 50px;
   box-shadow: 0 2px 8px var(--shadow-color);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease, var(--theme-transition);
   z-index: 950;
   color: var(--text-color);
@@ -192,19 +190,23 @@ h1,h2,h3{font-family:'Black Ops One Regular',sans-serif}
 
 .scroll-top {
   bottom: 12vh;
+  right: 4vw;
   position: fixed;
+  display: flex-grow;
 }
 
 .scroll-bottom {
   top: 16vh;
+  right: 4vw;
   position: fixed;
+  display: flex-grow;
 }
 
 .scroll-btn {
   position: fixed;
   right: 4vw;
   width: 2.4vh;
-  height: auto;
+  height: 2.4vh;
   background: var(--content-bg);
   border: 2px solid var(--accent-color);
   color: var(--accent-color);

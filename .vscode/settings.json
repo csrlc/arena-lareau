@@ -1,0 +1,18 @@
+{
+    "githubPullRequests.remotes": [
+        "origin",
+        "upstream",
+        "main"
+    ],
+    "githubPullRequests.allowFetch": true,
+    "github" {
+        "user.name" {
+            "csrlc",
+            "blewup"
+        },
+        "user.email" {
+            "billy_st_hilaire@hotmail.com",
+            "billy2078@gmail.com"
+        },
+    },
+}

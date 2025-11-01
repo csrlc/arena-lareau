@@ -1,443 +1,88 @@
 <!DOCTYPE html>
 <html lang="fr-FR" id="html" data-default-language="fr" data-current-language="fr" data-theme="dark">
-
-## Overview<head>
-
-This is a comprehensive, fully-optimized website for Aréna Régional Lareau with advanced features, theme support, and accessibility enhancements.    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-## 🎨 Theme System    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Script Tailwind for css -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-
-
-### Default Theme: Dark Mode    <!-- Script Tailwind for css -->
-
-- **Dark Mode** is the default theme across all pages    <script src="https://cdn.tailwindcss.com"></script>
-
-- Seamless theme switching with localStorage persistence
-
-- All components are theme-aware with smooth transitions    <!-- Preconnect Links -->
-
-- CSS variables ensure consistent theming throughout    <link crossorigin="" data-rocket-preconnect="" href="https://www.google-analytics.com" rel="preconnect">
-
+    <!-- Preconnect Links -->
+    <link crossorigin="" data-rocket-preconnect="" href="https://www.google-analytics.com" rel="preconnect">
     <link crossorigin="" data-rocket-preconnect="" href="https://www.googletagmanager.com" rel="preconnect">
-
-### Theme Features:    <link crossorigin="" data-rocket-preconnect="" href="https://connect.facebook.net" rel="preconnect">
-
-- **Light Theme Colors:**    <link crossorigin="" data-rocket-preconnect="" href="https://cdn.jsdelivr.net" rel="preconnect">
-
-  - Background: `#ffffff`    <link crossorigin="" data-rocket-preconnect="" href="https://ajax.googleapis.com" rel="preconnect">
-
-  - Text: `#1d1d1b`    <link crossorigin="" data-rocket-preconnect="" href="https://cdnjs.cloudflare.com" rel="preconnect">
-
-  - Content: `#ffffff`    <!-- SEO Meta Tags -->
-
+    <link crossorigin="" data-rocket-preconnect="" href="https://connect.facebook.net" rel="preconnect">
+    <link crossorigin="" data-rocket-preconnect="" href="https://cdn.jsdelivr.net" rel="preconnect">
+    <link crossorigin="" data-rocket-preconnect="" href="https://ajax.googleapis.com" rel="preconnect">
+    <link crossorigin="" data-rocket-preconnect="" href="https://cdnjs.cloudflare.com" rel="preconnect">
+    <!-- SEO Meta Tags -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
-- **Dark Theme Colors:**    <title>Aréna Régional Lareau - Centre sportif régional Napierville</title>
-
-  - Background: `#1d1d1b`    <meta name="description" content="Aréna Régional Lareau - Centre sportif régional à Napierville, QC. Location de glace, événements et activités sportives.">
-
-  - Text: `#ffffff`    <meta property="og:locale" content="fr_FR">
-
-  - Content: `#2d2d2b`    <meta property="og:type" content="website">
-
+    <title>Aréna Régional Lareau - Centre sportif régional Napierville</title>
+    <meta name="description" content="Aréna Régional Lareau - Centre sportif régional à Napierville, QC. Location de glace, événements et activités sportives.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="Aréna Régional Lareau - Centre sportif régional">
-
-### Theme Toggle:    <meta property="og:site_name" content="Aréna Régional Lareau">
-
-- Sun icon (☀️) appears in dark mode to switch to light    
-
-- Moon icon (🌙) appears in light mode to switch to dark    <!-- Icon related links -->
-
-- Theme preference saved to localStorage    <link rel="icon" type="image/png" href="./assets/images/logos/arena-light.png">
-
-- All logos and images adapt to the current theme    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
-
-    <link rel="icon" type="image/svg+xml" href="./assets/images/logos/arena-light.png">
-
-## 🌐 Language System
+    <meta property="og:site_name" content="Aréna Régional Lareau">
+    
+    <!-- Icon related links -->
+    <link rel="icon" type="image/png" href="/images/logo-arena.png">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
 
     <!-- Styles -->
-
-### Bilingual Support:    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-- **French (FR)** is the default language    <link rel="stylesheet" href="./assets/styles/fonts.css">
-
-- **English (EN)** available via toggle    <link rel="stylesheet" href="./assets/styles/index.css">
-
-- All UI elements support i18n with `data-i18n` attributes    <link rel="stylesheet" href="./assets/styles/navbar.css">
-
-- Language preference persists across sessions    <link rel="stylesheet" href="./assets/styles/footer.css">
-
-    <link rel="stylesheet" href="./assets/styles/galeries.css">
-
-## 🎯 Overlay Systems    <link rel="stylesheet" href="./assets/styles/events.css">
-
-    <link rel="stylesheet" href="./assets/styles/location.css">
-
-### 1. Logo Overlay    </head>
-
-**Trigger Methods:**  <body class="lang-fr" data-language="fr" data-theme="light">
-
-- Click scroll-to-top button when already at top    
-
-- Over-scroll at page top (pull down)    <i class="fas fa-circle-arrow-up scroll-btn scroll-top" onclick="scrollToTop()"></i>
-
-- Idle for 2 minutes (auto-trigger)    
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/styles/fonts.css">
+    <link rel="stylesheet" href="/assets/styles/index.css">
+    <link rel="stylesheet" href="/assets/styles/navbar.css">
+    <link rel="stylesheet" href="/assets/styles/footer.css">
+    <link rel="stylesheet" href="/assets/styles/galeries.css">
+    <link rel="stylesheet" href="/assets/styles/events.css">
+    <link rel="stylesheet" href="/assets/styles/location.css">
+    </head>
+  <body class="lang-fr" data-language="fr" data-theme="light">
+    
+    <i class="fas fa-circle-arrow-up scroll-btn scroll-top" onclick="scrollToTop()"></i>
+    
     <i class="fas fa-circle-arrow-down scroll-btn scroll-bottom" onclick="scrollToBottom()"></i>
 
-**Features:**
-
-- **80vw width, auto height** - responsive sizing    <!-- Important Message Overlay -->
-
-- **Theme-aware** - shows arena-light.png or arena-dark.png    <div class="adv-overlay hidden" aria-hidden="true" role="dialog" aria-labelledby="overlay-title" aria-describedby="overlay-desc">
-
-- **Hover effect** - scales to 1.2x on hover      <div class="backdrop" aria-hidden="true"></div>
-
-- **Blurry background** - backdrop-filter blur effect      <div class="ad-card">
-
-- **Click navigation** - opens https://blewup.github.io/arena-lareau/bourse.html in new tab        <button class="close-ad" aria-label="Fermer le message important">✕</button>
-
-- **Auto-dismiss** - closes after 3 seconds        <img src="/assets/images/hyperlink.png" alt="Bourses Sportives - Cliquer pour en savoir plus" id="overlay-title" aria-describedby="overlay-desc" onerror="this.style.display='none'"/>
-
-- **ESC key** - closes overlay        <div id="overlay-desc" class="visually-hidden">Message important concernant les bourses sportives. Cliquez sur l'image pour accéder aux détails.</div>
-
-- **Backdrop click** - closes overlay      </div>
-
+    <div class="adv-overlay hidden" aria-hidden="true">
+      <div class="backdrop"></div>
+      <div class="ad-card">
+        <button class="close-ad" aria-label="Fermer pub">✕</button>
+        <img src="/assets/images/hyperlink.png" alt="Promo Bourses" href="https://blewup.github.io/arena-lareau/bourse.html" onerror="this.style.display='none'"/>
+      </div>
     </div>
 
-### 2. Important Message Overlay (Ad Overlay)
-
-**Features:**    <!-- Grid Layout Container -->
-
-- **Always displays on page load** (no caching)    <div class="site-grid">
-
-- Shows hyperlink.png image with promotional content        <!-- Navigation will be loaded here -->
-
-- **Click navigation** - opens https://blewup.github.io/arena-lareau/bourse.html in new tab        <main class="site-header main main-navbar container-navbar active" id="main-navbar" src="./pages/content/navbar.html"></main>
-
-- Close button with hover animation        
-
-- Backdrop click to close        <!-- Main Content Area -->
-
-- ESC key support        <div class="content-wrapper">
-
-- Full accessibility with ARIA labels        <main class="main container-index active" id="main-index" src="./pages/index.html"></main>     
-
-        <main class="main container-events inactive" id="main-events" src="./pages/events.html"></main>
-
-## 📜 Navigation System        <main class="main container-billets inactive" id="main-billets" src="./pages/billets.html"></main>
-
-        <main class="main container-location inactive" id="main-location" src="./pages/location.html"></main>
-
-### Navbar Components:        <main class="main container-propos container-equipe inactive" id="main-propos-equipe" src="./pages/propos/equipe.html"></main>
-
-        <main class="main container-propos container-mission inactive" id="main-propos-mission" src="./pages/propos/mission.html"></main>
-
-#### 1. Main Navigation (Left Side)        <main class="main container-propos container-contact inactive" id="main-propos-contact" src="./pages/propos/contact.html"></main>
-
-- **Accueil** (Home) - Shows main page        </div>
-
-- **Événements** (Events) - Calendar view        
-
-- **Location** (Rental) - Ice booking system        <!-- Footer will be loaded here -->
-
-- **Achat de billets** (Tickets) - External link (opens in new tab)        <main class="site-footer main main-footer container-footer active" id="main-footer" src="./pages/content/footer.html"></main>
-
+    <!-- Grid Layout Container -->
+    <div class="site-grid">
+        <!-- Navigation will be loaded here -->
+        <main class="site-header main main-navbar container-navbar active" id="main-navbar" src="/pages/content/navbar.html"></main>
+        
+        <!-- Main Content Area -->
+        <div class="content-wrapper">
+        <main class="main container-index active" id="main-index" src="/pages/index.html"></main>     
+        <main class="main container-events inactive" id="main-events" src="/pages/events.html"></main>
+        <main class="main container-billets inactive" id="main-billets" src="/pages/billets.html"></main>
+        <main class="main container-location inactive" id="main-location" src="/pages/location.html"></main>
+        <main class="main container-propos conatiner-equipe inactive" id="main-propos-equipe" src="/pages/propos/equipe.html"></main>
+        <main class="main container-propos container-mission inactive" id="main-propos-mission" src="/pages/propos/mission.html"></main>
+        <main class="main container-propos conatiner-contact inactive" id="main-propos-contact" src="/pages/propos/contact.html"></main>
+        </div>
+        
+        <!-- Footer will be loaded here -->
+        <main class="site-footer main main-footer container-footer active" id="main-footer" src="/pages/content/footer.html"></main>
     </div>
 
-#### 2. Gallery Sidebar
-
-- **Trigger** - "Galeries Photos" button in top-left    <!-- Scripts -->
-
-- **Slide-in animation** from left    <script src="./assets/scripts/index.js"></script>
-
-- **Three galleries:**    <script src="./assets/scripts/billets.js"></script>
-
-  - Patinage Artistique (Artistic Skating)    <script src="./assets/scripts/navbar.js"></script>
-
-  - Équipe Familial (Family Teams)    <script src="./assets/scripts/footer.js"></script>
-
-  - Hockey Féminin (Women's Hockey)    <script src="./assets/scripts/scroll.js"></script>
-
-- Overlay backdrop for easy closing    <script src="./assets/scripts/events.js"></script>
-
-- Theme-aware styling    <script src="./assets/scripts/layout.js"></script>    
-
-    <script src="./assets/scripts/location.js"></script>
-
-#### 3. Dropdown Menu (À propos)    <script src="./assets/scripts/galeries.js"></script>
-
-- **Desktop** - Dropdown from "À propos" button    <script src="./assets/scripts/calendar.js"></script>    
-
-- **Mobile** - Hamburger menu</body>
-
-- **Menu items:**</html>
-  - Notre mission (Our Mission)
-  - L'équipe (Team)
-  - Contact
-
-#### 4. Toolbar (Top-Right)
-- **Language Toggle** - FR/EN switch
-- **Theme Toggle** - Light/Dark mode
-
-### Hover Effects:
-- Menu buttons show **underline** on hover
-- Background changes to text color
-- Text color changes to accent color
-- 2px thick underline with 4px offset
-
-## 🎨 Scroll Controls
-
-### Scroll Buttons:
-- **Scroll to Top** - Positioned at bottom-right (top button)
-- **Scroll to Bottom** - Positioned at bottom-right (bottom button)
-- **Theme-aware** - adapts colors based on theme
-- **Hover effects** - scale(1.15) and color inversion
-
-### Special Scroll-to-Top Behavior:
-- When clicked at top of page → shows Logo Overlay
-- When clicked mid-page → scrolls to top, then shows Logo Overlay
-- Smooth scroll animation
-- 200ms delay before overlay appears
-
-## 💾 Form Caching System
-
-### Auto-Save Features:
-- **Automatic detection** - all forms with `id` or `data-cache-form`
-- **Real-time saving** - saves on input/change events
-- **localStorage** - persists across sessions
-- **Auto-restore** - loads saved data on page load
-- **Clear on success** - removes cache after successful submission
-
-### Usage:
-```html
-<form id="booking-form" data-cache-form="booking">
-  <!-- Form fields auto-save -->
-</form>
-```
-
-### API:
-- `window.formCache.saveFormData(formId, data)` - Manual save
-- `window.formCache.loadFormData(formId)` - Manual load
-- `window.formCache.clearFormData(formId)` - Clear specific form
-- `window.formCache.clearAllFormData()` - Clear all cached forms
-- `window.refreshFormCaching()` - Re-initialize form caching
-
-## 📅 Calendar System
-
-### Ice Rental Calendar:
-- **Month view** - Current and next month
-- **Color coding:**
-  - 🟢 Green - Available (9h-16h)
-  - 🔴 Red - Reserved (7h-9h, 16h-00h)
-  - 🟥 Weekend - Fully reserved (7h-00h)
-- **Time windows** - Shows specific availability slots
-- **Modal interface** - Full-screen calendar view
-- **Legend** - Clear status indicators
-
-### Events Calendar:
-- **10-month display** - September to June
-- **4x3 grid** - 4 rows, 3 columns
-- **Day states:**
-  - Past days - Faded red
-  - Overloaded - Red
-  - Available - Green (brightens on hover)
-  - Selected - Blue
-  - Upcoming - Yellow
-- **Hover effects** - Scale 1.15x, date increases 1.4x
-- **Click selection** - Multi-date selection support
-
-## 🎨 CSS Architecture
-
-### CSS Variables:
-- **Theme-independent:**
-  - `--accent-color: #f15e68`
-  - `--success-color: #5ecf71`
-  - `--error-color: #f15e68`
-  - `--warning-color: #ffa500`
-  - `--info-color: #3498db`
-
-### Transitions:
-- All components use `var(--theme-transition)`
-- Smooth 0.3s ease transitions
-- Theme changes affect:
-  - Background colors
-  - Text colors
-  - Border colors
-  - Shadow colors
-
-## 🏒 Ice Rink Visualization
-
-### Interactive Features:
-- **NHL-style layout** - Red center line, blue zones
-- **Face-off circles** - Authentic markings
-- **Center logo** - Theme-aware arena logo
-- **Selection buttons** - Full ice / Half ice
-- **Booking modal** - Comprehensive booking system
-
-## 📱 Responsive Design
-
-### Breakpoints:
-- **Desktop:** 1200px+
-- **Tablet:** 768px - 1199px
-- **Mobile:** < 768px
-
-### Mobile Optimizations:
-- Hamburger menu replaces desktop navigation
-- Stacked layouts for better readability
-- Touch-friendly button sizes (40px+)
-- Optimized gallery grid (1-2 columns)
-- Calendar adapts to single column
-
-## ♿ Accessibility
-
-### ARIA Support:
-- Proper role attributes
-- aria-label on interactive elements
-- aria-hidden on decorative elements
-- aria-describedby for complex components
-
-### Keyboard Navigation:
-- ESC key closes overlays
-- Tab navigation through all interactive elements
-- Focus indicators on all controls
-
-### Screen Reader Support:
-- Semantic HTML structure
-- Descriptive alt text on images
-- visually-hidden class for screen-reader-only text
-
-## 🚀 Performance Optimizations
-
-### Loading Strategy:
-- Async content loading
-- Lazy image loading
-- Preconnect to external resources
-- Font-display: swap for custom fonts
-
-### Caching:
-- localStorage for preferences
-- Form data auto-save
-- Theme/language persistence
-- Service worker ready
-
-## 🔗 External Links
-
-### Bourses Page:
-- URL: `https://blewup.github.io/arena-lareau/bourse.html`
-- Triggered from:
-  - Logo overlay click
-  - Important message overlay click
-  - Navigation links (where applicable)
-
-### Ticket Purchase:
-- URL: `https://secure3.xpayrience.com/arena_regional_lareau`
-- Opens in new tab
-- Available from main navigation
-
-## 📦 Deployment
-
-### GitHub Pages:
-- Repository: `csrlc/arena-lareau`
-- Codespace URL: `https://codespaces.new/csrlc/arena-lareau`
-- All features work with relative paths
-- No build step required
-
-### File Structure:
-```
-arena-lareau/
-├── index.html
-├── pages/
-│   ├── index.html
-│   ├── events.html
-│   ├── location.html
-│   ├── billets.html
-│   ├── content/
-│   │   ├── navbar.html
-│   │   └── footer.html
-│   ├── galeries/
-│   │   ├── cpa.html
-│   │   ├── famille.html
-│   │   └── feminin.html
-│   └── propos/
-│       ├── mission.html
-│       ├── equipe.html
-│       └── contact.html
-├── assets/
-│   ├── styles/
-│   │   ├── index.css
-│   │   ├── navbar.css
-│   │   ├── footer.css
-│   │   ├── events.css
-│   │   ├── location.css
-│   │   ├── galeries.css
-│   │   └── fonts.css
-│   ├── scripts/
-│   │   ├── index.js
-│   │   ├── navbar.js
-│   │   ├── footer.js
-│   │   ├── scroll.js
-│   │   ├── events.js
-│   │   ├── location.js
-│   │   ├── galeries.js
-│   │   ├── layout.js
-│   │   ├── billets.js
-│   │   └── calendar.js
-│   ├── images/
-│   │   ├── logos/
-│   │   │   ├── arena-light.png
-│   │   │   ├── arena-dark.png
-│   │   │   └── mustang.png
-│   │   ├── galeries/
-│   │   └── icons/
-│   └── fonts/
-```
-
-## 🐛 Debugging
-
-### Console Logging:
-- Theme changes logged
-- Form caching events logged
-- Navigation events logged
-- Content loading tracked
-
-### localStorage Keys:
-- `theme` - Current theme (light/dark)
-- `language` - Current language (fr/en)
-- `form_cache_[formId]` - Cached form data
-
-## ✅ Testing Checklist
-
-- [ ] Theme toggle works in navbar
-- [ ] Language toggle switches all text
-- [ ] Logo overlay appears on scroll-to-top when at top
-- [ ] Important message overlay shows on page load
-- [ ] All navigation links work
-- [ ] Gallery sidebar slides in
-- [ ] Dropdown menu shows/hides
-- [ ] Mobile menu works
-- [ ] Scroll buttons function correctly
-- [ ] Calendar displays and is interactive
-- [ ] Forms auto-save
-- [ ] All overlays can be closed with ESC
-- [ ] External links open in new tabs
-- [ ] Theme persists across page loads
-- [ ] Language persists across sessions
-
-## 📄 License
-
-See LICENSE file for details.
-
-## 🤝 Contributing
-
-This is a production website for Aréna Régional Lareau. For contributions or bug reports, please contact the repository owner.
-
----
-
-**Last Updated:** October 31, 2025
-**Version:** 2.0.0 - Fully Optimized
-**Status:** Production Ready ✅
+    <!-- Scripts -->
+    <script src="/assets/scripts/index.js"></script>
+    <script src="/assets/scripts/billets.js"></script>
+    <script src="/assets/scripts/navbar.js"></script>
+    <script src="/assets/scripts/footer.js"></script>
+    <script src="/assets/scripts/scroll.js"></script>
+    <script src="/assets/scripts/events.js"></script>
+    <script src="/assets/scripts/layout.js"></script>    
+    <script src="/assets/scripts/location.js"></script>
+    <script src="/assets/scripts/galeries.js"></script>
+    <script src="/assets/scripts/calendar.js"></script>    
+</body>
+</html>
