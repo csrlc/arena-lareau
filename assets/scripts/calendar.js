@@ -166,235 +166,238 @@ document.addEventListener('DOMContentLoaded', function() {
     renderMonthCalendar(thisMonthDate, 'month1-title', 'month1-days');
     renderMonthCalendar(nextMonthDate, 'month2-title', 'month2-days');
     renderEventDetails();
-});
-    const selectedDates = new Set();
-    const reservedDates = JSON.parse(localStorage.getItem('reservedDates')) || {};
 
-    // Generate time options from 7:00 to 00:00 (midnight)
-    function populateTimeSelects() {
-        const startSelect = document.getElementById('start-time');
-        const endSelect = document.getElementById('end-time');
-        
-        if (!startSelect || !endSelect) return;
+    // Calendar booking functionality (only if on location page)
+    if (document.getElementById('location')) {
+        const selectedDates = new Set();
+        const reservedDates = JSON.parse(localStorage.getItem('reservedDates')) || {};
 
-        for (let hour = 7; hour < 24; hour++) {
-            const timeStr = `${String(hour).padStart(2, '0')}:00`;
-            startSelect.innerHTML += `<option value="${hour}">${timeStr}</option>`;
-            endSelect.innerHTML += `<option value="${hour}">${timeStr}</option>`;
-        }
-        endSelect.innerHTML += `<option value="24">00:00</option>`;
-    }
+        // Generate time options from 7:00 to 00:00 (midnight)
+        function populateTimeSelects() {
+            const startSelect = document.getElementById('start-time');
+            const endSelect = document.getElementById('end-time');
+            
+            if (!startSelect || !endSelect) return;
 
-    // Check if date is fully reserved
-    function isFullyReserved(dateStr) {
-        return reservedDates[dateStr] && reservedDates[dateStr].length >= 17; // All hours 7-24
-    }
-
-    // Get day box color based on reservation status
-    function getDayBoxStyle(date, dayOfWeek) {
-        const dateStr = date.toISOString().split('T')[0];
-        const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
-
-        if (isFullyReserved(dateStr)) {
-            return 'fully-reserved';
+            for (let hour = 7; hour < 24; hour++) {
+                const timeStr = `${String(hour).padStart(2, '0')}:00`;
+                startSelect.innerHTML += `<option value="${hour}">${timeStr}</option>`;
+                endSelect.innerHTML += `<option value="${hour}">${timeStr}</option>`;
+            }
+            endSelect.innerHTML += `<option value="24">00:00</option>`;
         }
 
-        if (selectedDates.has(dateStr)) {
-            return 'selected';
+        // Check if date is fully reserved
+        function isFullyReserved(dateStr) {
+            return reservedDates[dateStr] && reservedDates[dateStr].length >= 17; // All hours 7-24
         }
 
-        if (isWeekday) {
-            return 'weekday-partial';
-        }
-
-        return 'weekend';
-    }
-
-    // Render year calendar (September to May)
-    function renderYearCalendar() {
-        const today = new Date();
-        const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth();
-
-        // Determine season (Sept current year to May next year)
-        const startYear = currentMonth >= 8 ? currentYear : currentYear - 1;
-        const months = [
-            { month: 8, year: startYear },   // September
-            { month: 9, year: startYear },   // October
-            { month: 10, year: startYear },  // November
-            { month: 11, year: startYear },  // December
-            { month: 0, year: startYear + 1 }, // January
-            { month: 1, year: startYear + 1 }, // February
-            { month: 2, year: startYear + 1 }, // March
-            { month: 3, year: startYear + 1 }, // April
-            { month: 4, year: startYear + 1 }  // May
-        ];
-
-        const gridContainer = document.getElementById('year-calendar-grid');
-        if (!gridContainer) return;
-        
-        gridContainer.innerHTML = '';
-
-        months.forEach(({ month, year }) => {
-            const monthContainer = document.createElement('div');
-            monthContainer.className = 'month-calendar';
-
-            const monthDate = new Date(year, month, 1);
-            const monthName = new Intl.DateTimeFormat('fr-CA', { month: 'long', year: 'numeric' }).format(monthDate);
-
-            monthContainer.innerHTML = `
-                <div class="month-header">${monthName.charAt(0).toUpperCase() + monthName.slice(1)}</div>
-                <div class="weekdays-mini">
-                    <div>D</div><div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div>
-                </div>
-                <div class="days-grid-mini" data-month="${month}" data-year="${year}"></div>
-            `;
-
-            gridContainer.appendChild(monthContainer);
-            renderMonthDays(month, year);
-        });
-    }
-
-    function renderMonthDays(month, year) {
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-        const startingDayOfWeek = firstDay.getDay();
-        const daysInMonth = lastDay.getDate();
-
-        const daysGrid = document.querySelector(`.days-grid-mini[data-month="${month}"][data-year="${year}"]`);
-        if (!daysGrid) return;
-        
-        let daysHTML = '';
-
-        // Empty cells before month starts
-        for (let i = 0; i < startingDayOfWeek; i++) {
-            daysHTML += '<div class="day-mini blank"></div>';
-        }
-
-        // Days of the month
-        for (let day = 1; day <= daysInMonth; day++) {
-            const date = new Date(year, month, day);
+        // Get day box color based on reservation status
+        function getDayBoxStyle(date, dayOfWeek) {
             const dateStr = date.toISOString().split('T')[0];
-            const dayOfWeek = date.getDay();
-            const styleClass = getDayBoxStyle(date, dayOfWeek);
+            const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
 
-            daysHTML += `<div class="day-mini ${styleClass}" data-date="${dateStr}">${day}</div>`;
+            if (isFullyReserved(dateStr)) {
+                return 'fully-reserved';
+            }
+
+            if (selectedDates.has(dateStr)) {
+                return 'selected';
+            }
+
+            if (isWeekday) {
+                return 'weekday-partial';
+            }
+
+            return 'weekend';
         }
 
-        daysGrid.innerHTML = daysHTML;
+        // Render year calendar (September to May)
+        function renderYearCalendar() {
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth();
 
-        // Add click handlers
-        daysGrid.querySelectorAll('.day-mini:not(.blank)').forEach(dayEl => {
-            dayEl.addEventListener('click', function() {
-                const dateStr = this.getAttribute('data-date');
-                toggleDateSelection(dateStr, this);
+            // Determine season (Sept current year to May next year)
+            const startYear = currentMonth >= 8 ? currentYear : currentYear - 1;
+            const months = [
+                { month: 8, year: startYear },   // September
+                { month: 9, year: startYear },   // October
+                { month: 10, year: startYear },  // November
+                { month: 11, year: startYear },  // December
+                { month: 0, year: startYear + 1 }, // January
+                { month: 1, year: startYear + 1 }, // February
+                { month: 2, year: startYear + 1 }, // March
+                { month: 3, year: startYear + 1 }, // April
+                { month: 4, year: startYear + 1 }  // May
+            ];
+
+            const gridContainer = document.getElementById('year-calendar-grid');
+            if (!gridContainer) return;
+            
+            gridContainer.innerHTML = '';
+
+            months.forEach(({ month, year }) => {
+                const monthContainer = document.createElement('div');
+                monthContainer.className = 'month-calendar';
+
+                const monthDate = new Date(year, month, 1);
+                const monthName = new Intl.DateTimeFormat('fr-CA', { month: 'long', year: 'numeric' }).format(monthDate);
+
+                monthContainer.innerHTML = `
+                    <div class="month-header">${monthName.charAt(0).toUpperCase() + monthName.slice(1)}</div>
+                    <div class="weekdays-mini">
+                        <div>D</div><div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div>
+                    </div>
+                    <div class="days-grid-mini" data-month="${month}" data-year="${year}"></div>
+                `;
+
+                gridContainer.appendChild(monthContainer);
+                renderMonthDays(month, year);
             });
-        });
-    }
-
-    function toggleDateSelection(dateStr, element) {
-        if (isFullyReserved(dateStr)) {
-            alert('Cette date est complètement réservée.');
-            return;
         }
 
-        if (selectedDates.has(dateStr)) {
-            selectedDates.delete(dateStr);
-            element.classList.remove('selected');
-            const date = new Date(dateStr);
-            element.className = 'day-mini ' + getDayBoxStyle(date, date.getDay());
-        } else {
-            selectedDates.add(dateStr);
-            element.classList.add('selected');
+        function renderMonthDays(month, year) {
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startingDayOfWeek = firstDay.getDay();
+            const daysInMonth = lastDay.getDate();
+
+            const daysGrid = document.querySelector(`.days-grid-mini[data-month="${month}"][data-year="${year}"]`);
+            if (!daysGrid) return;
+            
+            let daysHTML = '';
+
+            // Empty cells before month starts
+            for (let i = 0; i < startingDayOfWeek; i++) {
+                daysHTML += '<div class="day-mini blank"></div>';
+            }
+
+            // Days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const dateStr = date.toISOString().split('T')[0];
+                const dayOfWeek = date.getDay();
+                const styleClass = getDayBoxStyle(date, dayOfWeek);
+
+                daysHTML += `<div class="day-mini ${styleClass}" data-date="${dateStr}">${day}</div>`;
+            }
+
+            daysGrid.innerHTML = daysHTML;
+
+            // Add click handlers
+            daysGrid.querySelectorAll('.day-mini:not(.blank)').forEach(dayEl => {
+                dayEl.addEventListener('click', function() {
+                    const dateStr = this.getAttribute('data-date');
+                    toggleDateSelection(dateStr, this);
+                });
+            });
         }
 
-        updateTimeSelectionPanel();
-    }
-
-    function updateTimeSelectionPanel() {
-        const panel = document.getElementById('time-selection-panel');
-        const datesList = document.getElementById('selected-dates-list');
-        
-        if (!panel || !datesList) return;
-
-        if (selectedDates.size === 0) {
-            panel.style.display = 'none';
-            return;
-        }
-
-        panel.style.display = 'block';
-
-        const sortedDates = Array.from(selectedDates).sort();
-        datesList.innerHTML = '<h4>Dates sélectionnées:</h4>';
-        sortedDates.forEach(dateStr => {
-            const date = new Date(dateStr + 'T12:00:00');
-            const formatted = new Intl.DateTimeFormat('fr-CA', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            }).format(date);
-            datesList.innerHTML += `<div class="selected-date-item">${formatted}</div>`;
-        });
-    }
-
-    // Confirm reservation button
-    const confirmBtn = document.getElementById('confirm-reservation');
-    if (confirmBtn) {
-        confirmBtn.addEventListener('click', function() {
-            const startTimeEl = document.getElementById('start-time');
-            const endTimeEl = document.getElementById('end-time');
-            
-            if (!startTimeEl || !endTimeEl) return;
-            
-            const startTime = parseInt(startTimeEl.value);
-            const endTime = parseInt(endTimeEl.value);
-            
-            if (endTime <= startTime) {
-                alert('L\'heure de fin doit être après l\'heure de début.');
+        function toggleDateSelection(dateStr, element) {
+            if (isFullyReserved(dateStr)) {
+                alert('Cette date est complètement réservée.');
                 return;
             }
+
+            if (selectedDates.has(dateStr)) {
+                selectedDates.delete(dateStr);
+                element.classList.remove('selected');
+                const date = new Date(dateStr);
+                element.className = 'day-mini ' + getDayBoxStyle(date, date.getDay());
+            } else {
+                selectedDates.add(dateStr);
+                element.classList.add('selected');
+            }
+
+            updateTimeSelectionPanel();
+        }
+
+        function updateTimeSelectionPanel() {
+            const panel = document.getElementById('time-selection-panel');
+            const datesList = document.getElementById('selected-dates-list');
             
+            if (!panel || !datesList) return;
+
             if (selectedDates.size === 0) {
-                alert('Veuillez sélectionner au moins une date.');
+                panel.style.display = 'none';
                 return;
             }
-            
-            // Save reservations
-            selectedDates.forEach(dateStr => {
-                if (!reservedDates[dateStr]) {
-                    reservedDates[dateStr] = [];
+
+            panel.style.display = 'block';
+
+            const sortedDates = Array.from(selectedDates).sort();
+            datesList.innerHTML = '<h4>Dates sélectionnées:</h4>';
+            sortedDates.forEach(dateStr => {
+                const date = new Date(dateStr + 'T12:00:00');
+                const formatted = new Intl.DateTimeFormat('fr-CA', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }).format(date);
+                datesList.innerHTML += `<div class="selected-date-item">${formatted}</div>`;
+            });
+        }
+
+        // Confirm reservation button
+        const confirmBtn = document.getElementById('confirm-reservation');
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', function() {
+                const startTimeEl = document.getElementById('start-time');
+                const endTimeEl = document.getElementById('end-time');
+                
+                if (!startTimeEl || !endTimeEl) return;
+                
+                const startTime = parseInt(startTimeEl.value);
+                const endTime = parseInt(endTimeEl.value);
+                
+                if (endTime <= startTime) {
+                    alert('L\'heure de fin doit être après l\'heure de début.');
+                    return;
                 }
                 
-                for (let hour = startTime; hour < endTime; hour++) {
-                    if (!reservedDates[dateStr].includes(hour)) {
-                        reservedDates[dateStr].push(hour);
-                    }
+                if (selectedDates.size === 0) {
+                    alert('Veuillez sélectionner au moins une date.');
+                    return;
                 }
+                
+                // Save reservations
+                selectedDates.forEach(dateStr => {
+                    if (!reservedDates[dateStr]) {
+                        reservedDates[dateStr] = [];
+                    }
+                    
+                    for (let hour = startTime; hour < endTime; hour++) {
+                        if (!reservedDates[dateStr].includes(hour)) {
+                            reservedDates[dateStr].push(hour);
+                        }
+                    }
+                });
+                
+                localStorage.setItem('reservedDates', JSON.stringify(reservedDates));
+                
+                const dateCount = selectedDates.size;
+                alert(`✓ Réservation confirmée!\n\n${dateCount} date(s) réservée(s)\nHoraire: ${startTime}h00 - ${endTime === 24 ? '00' : endTime}h00\n\nVotre réservation a été sauvegardée.`);
+                
+                selectedDates.clear();
+                renderYearCalendar();
+                updateTimeSelectionPanel();
             });
-            
-            localStorage.setItem('reservedDates', JSON.stringify(reservedDates));
-            
-            const dateCount = selectedDates.size;
-            alert(`✓ Réservation confirmée!\n\n${dateCount} date(s) réservée(s)\nHoraire: ${startTime}h00 - ${endTime === 24 ? '00' : endTime}h00\n\nVotre réservation a été sauvegardée.`);
-            
-            selectedDates.clear();
-            renderYearCalendar();
-            updateTimeSelectionPanel();
-        });
+        }
+        
+        // Clear selection button
+        const clearBtn = document.getElementById('clear-selection');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function() {
+                selectedDates.clear();
+                renderYearCalendar();
+                updateTimeSelectionPanel();
+            });
+        }
+        
+        // Initialize booking calendar
+        populateTimeSelects();
+        renderYearCalendar();
     }
-    
-    // Clear selection button
-    const clearBtn = document.getElementById('clear-selection');
-    if (clearBtn) {
-        clearBtn.addEventListener('click', function() {
-            selectedDates.clear();
-            renderYearCalendar();
-            updateTimeSelectionPanel();
-        });
-    }
-    
-    // Initialize
-    populateTimeSelects();
-    renderYearCalendar();
 });

@@ -36,43 +36,17 @@ class GalleriesController {
 
     initGalleryNavigation() {
         // Handle gallery menu item clicks from the sidebar
-        const galleryLinks = document.querySelectorAll('.galeries-menu a, .gallery-menu a');
+        const galleryLinks = document.querySelectorAll('.galeries-menu a[data-target], .gallery-menu a[data-target]');
         galleryLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const href = link.getAttribute('href');
+                const targetId = link.getAttribute('data-target');
                 
-                // Hide all gallery content
-                document.querySelectorAll('[class*="container-galleries-"]').forEach(gallery => {
-                    gallery.classList.remove('active');
-                    gallery.classList.add('inactive');
-                });
-                
-                // Show selected gallery content based on href
-                if (href.includes('cpa') || href === '#cpa') {
-                    const cpaGallery = document.querySelector('.container-galleries-cpa');
-                    if (cpaGallery) {
-                        cpaGallery.classList.remove('inactive');
-                        cpaGallery.classList.add('active');
-                    }
-                } else if (href.includes('famille') || href === '#famille') {
-                    const familleGallery = document.querySelector('.container-galleries-familles');
-                    if (familleGallery) {
-                        familleGallery.classList.remove('inactive');
-                        familleGallery.classList.add('active');
-                    }
-                } else if (href.includes('feminin') || href === '#feminin') {
-                    const femininGallery = document.querySelector('.container-galleries-feminin');
-                    if (femininGallery) {
-                        femininGallery.classList.remove('inactive');
-                        femininGallery.classList.add('active');
-                    }
+                // Use the navigation manager to switch to the gallery page
+                if (targetId && window.navManager) {
+                    window.navManager.activateContent(targetId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
-                
-                // Reinitialize gallery images for slideshow
-                setTimeout(() => {
-                    galleryImages = Array.from(document.querySelectorAll('.active .gallery-grid img'));
-                }, 100);
                 
                 // Close sidebar after selection for better UX
                 const sidebar = document.getElementById('galeries-sidebar');
