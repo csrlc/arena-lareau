@@ -1,0 +1,145 @@
+    <main id="navbar" class="container container-navbar active" data-page="navbar">
+      <header class="site-header">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+          <section class="nav-left logo-section">
+            <!-- Logo Section -->
+            <a href="/index.html" class="site-logo light-logo" data-theme="light">
+              <!-- Using placeholder image -->
+              <img src="/assets/images/logos/arena-light.png" alt="Aréna Régional Lareau" class="theme-sensitive-logo"></img>
+            </a>
+            <a href="/index.html" class="site-logo dark-logo" data-theme="dark">
+              <!-- Using placeholder image -->
+              <img src="/assets/images/logos/arena-dark.png" alt="Aréna Régional Lareau" class="theme-sensitive-logo"></img>
+            </a>
+          </section>
+
+          <!-- Top Row Left - Sidebar Trigger -->
+          <section class="top-nav top-nav-left container-galeries">
+            <!-- Sidebar Trigger Button -->
+            <button class="sidebar-toggle-btn" id="sidebar-toggle-btn">
+              <i class="fas fa-book-open sidebar-icon"></i>
+              <span class="sidebar-text">
+                <span class="french-active">Galeries Photos</span>
+                <span class="english-active" style="display:none;">Photo Galleries</span>
+              </span>
+            </button>
+
+            <aside class="sidebar" id="main-sidebar">
+              <nav>
+                <h2 class="sidebar-title">
+                  <span class="french-active">Galeries Photos</span>
+                  <span class="english-active" style="display:none;">Photo Galleries</span>
+                </h2>
+                <ul class="sidebar-menu">
+                  <li class="sidebar-menu-item">
+                    <a href="#" onclick="navigateToSection('main-galleries-cpa')" class="sidebar-link nav-link inactive" data-target="main-galleries-cpa">
+                      
+                      <a href="/pages/galeries/cpa.html" class="french-active"><i class="fas fa-camera">Galeries de Photos du Patinage Artistique</i></a>
+                      <a href="/pages/galeries/cpa.html" class="english-active" style="display:none;"><i class="fas fa-camera">Artistic Skating Picture Gallery</i></a>
+                    </a>
+                  </li>
+                  <li class="sidebar-menu-item">
+                    <a href="#" onclick="navigateToSection('main-galleries-famille')" class="sidebar-link nav-link inactive" data-target="main-galleries-famille">
+                      <i class="fas fa-users"></i>
+                      <a href="/pages/galeries/famille.html" class="french-active"><i class="fas fa-camera">Galeries de Photos du Tournoi des Familles</i></a>
+                      <a href="/pages/galeries/famille.html" class="english-active" style="display:none;"><i class="fas fa-camera">Family Tournament Picture Gallery</i></a>
+                    </a>
+                  </li>
+                  <li class="sidebar-menu-item">
+                    <a href="#" onclick="navigateToSection('main-galleries-feminin')" class="sidebar-link nav-link inactive" data-target="main-galleries-feminin">
+                      <i class="fas fa-hockey-puck"></i>
+                      <a href="/pages/galeries/feminin.html"  class="french-active"><i class="fas fa-camera">Galeries de Photos du Hockey Féminin</i></a>
+                      <a href="/pages/galeries/feminin.html" class="english-active" style="display:none;"><i class="fas fa-camera">Women's Hockey Picture Gallery</i></a>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
+          </section>
+    
+          <!-- Top Row Right -->
+          <section class="top-nav top-nav-right container-tools">
+            <div class="toolbar">
+              <button id="langToggle" class="btn-toggle">FR</button>
+              <button id="themeToggle" class="btn-toggle" aria-label="Toggle theme">
+                <span class="theme-icon light">☀️</span>
+                <span class="theme-icon dark">🌙</span>
+              </button>
+            </div>
+          </section>
+    
+          <!-- Main Navigation - Left Side -->
+          <section class="main-nav main-nav-left Container-menuitem">
+            <div class="nav-links nav-links-french french-active" role="menubar">
+              <button class="menuitem"><a href="#index" data-target="main-index" role="menuitem" data-i18n="home" data-i18n-json='{"fr":"Accueil","en":"Home"}'><i class="fas fa-home"></i> Accueil</a></button>
+              <button class="menuitem"><a href="#events" data-target="main-events" role="menuitem" data-i18n="events" data-i18n-json='{"fr":"Événements","en":"Events"}'><i class="fas fa-calendar"></i> Événements</a></button>
+              <button class="menuitem"><a href="#location" data-target="main-location" role="menuitem" data-i18n="location" data-i18n-json='{"fr":"Location","en":"Rental"}'><i class="fas fa-map-marker"></i> Location</a></button>
+              <button class="menuitem"><a href="https://secure3.xpayrience.com/arena_regional_lareau" target="_blank" data-new-tab="true" role="menuitem" data-i18n="tickets" data-i18n-json='{"fr":"Achat de billets","en":"Tickets"}'><i class="fas fa-ticket-alt"></i> Achat de billets</a></button>
+            </div>
+            <div class="nav-links nav-links-english english-active" role="menubar">
+              <button class="menuitem"><a href="#index" data-target="main-index" role="menuitem" data-i18n="home" data-i18n-json='{"fr":"Accueil","en":"Home"}'><i class="fas fa-home"></i> Home</a></button>
+              <button class="menuitem"><a href="#events" data-target="main-events" role="menuitem" data-i18n="events" data-i18n-json='{"fr":"Événements","en":"Events"}'><i class="fas fa-calendar"></i> Events</a></button>
+              <button class="menuitem"><a href="#location" data-target="main-location" role="menuitem" data-i18n="location" data-i18n-json='{"fr":"Location","en":"Rental"}'><i class="fas fa-map-marker"></i> Reservation</a></button>
+              <button class="menuitem"><a href="https://secure3.xpayrience.com/arena_regional_lareau" target="_blank" data-new-tab="true" role="menuitem" data-i18n="tickets" data-i18n-json='{"fr":"Achat de billets","en":"Tickets"}'><i class="fas fa-ticket-alt"></i> Buy Tickets</a></button>
+            </div> 
+          </section>
+    
+          <!-- Main Navigation - Right Side (À propos) -->
+          <section class="main-nav main-nav-right">
+            <!-- Dropdown Trigger Button -->
+            <button class="dropdown-trigger" id="dropdown-trigger">
+              <span class="dropdown-text">
+                <span class="french-active">À propos</span>
+                <span class="english-active" style="display:none;">About</span>
+              </span>
+              <div class="dropdown-icon-box">
+                <i class="fas fa-info-circle"></i>
+              </div>
+            </button>
+
+            <!-- === Dropdown Menu (Hidden by default) === -->
+            <div class="dropdown-content" id="dropdown-content">
+              <nav>
+                <ul>
+                  <li>
+                    <a href="#" onclick="navigateToSection('main-propos-mission')" class="dropdown-item nav-link" data-target="main-propos-mission">
+                      <i class="fas fa-bullseye"></i>
+                      <span class="french-active">Notre mission</span>
+                      <span class="english-active" style="display:none;">Our Mission</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="navigateToSection('main-propos-equipe')" class="dropdown-item nav-link" data-target="main-propos-equipe">
+                      <i class="fas fa-users"></i>
+                      <span class="french-active">L'Équipe</span>
+                      <span class="english-active" style="display:none;">The Team</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="navigateToSection('main-propos-contact')" class="dropdown-item nav-link" data-target="main-propos-contact">
+                      <i class="fas fa-envelope"></i>
+                      <span class="french-active">Contact</span>
+                      <span class="english-active" style="display:none;">Contact</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </section>
+        </nav>
+      </header>
+    
+      <!-- Fullscreen Logo Overlay -->
+      <div class="logo-overlay theme-light" data-theme="light">
+        <div class="logo-overlay-backdrop"></div>
+        <div class="logo-overlay-content">
+          <img src="/assets/images/logos/arena-light.png" alt="Aréna Régional Lareau" class="logo-overlay-image theme-sensitive-logo"></img>
+        </div>
+      </div>
+      <div class="logo-overlay theme-dark" data-theme="dark">
+        <div class="logo-overlay-backdrop"></div>
+        <div class="logo-overlay-content">
+          <img src="/assets/images/logos/arena-dark.png" alt="Aréna Régional Lareau" class="logo-overlay-image theme-sensitive-logo"></img>
+        </div>
+      </div>
+    </main>

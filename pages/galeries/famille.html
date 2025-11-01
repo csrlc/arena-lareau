@@ -1,0 +1,35 @@
+    <main id="familles" class="container-galleries-familles inactive">
+        <h1 data-i18n="family-gallery" data-i18n-json='{"fr":"Galerie Famille","en":"Family Gallery"}'>Galerie Famille</h1>
+        
+        <div class="gallery-grid">
+            <img src="../../../assets/images/galeries/familles/001.jpg" alt="Famille 1" onclick="openSlideshow(0)" loading="lazy">
+            <img src="../../../assets/images/galeries/familles/002.jpg" alt="Famille 2" onclick="openSlideshow(1)" loading="lazy">
+            <img src="../../../assets/images/galeries/familles/003.jpg" alt="Famille 3" onclick="openSlideshow(2)" loading="lazy">
+            <img src="../../../assets/images/galeries/familles/004.jpg" alt="Famille 4" onclick="openSlideshow(3)" loading="lazy">
+            <img src="../../../assets/images/galeries/familles/005.jpg" alt="Famille 5" onclick="openSlideshow(4)" loading="lazy">
+            <img src="../../../assets/images/galeries/familles/006.jpg" alt="Famille 6" onclick="openSlideshow(5)" loading="lazy">
+            <img src="../../../assets/images/galeries/familles/007.jpg" alt="Famille 7" onclick="openSlideshow(6)" loading="lazy">
+            <img src="../../../assets/images/galeries/familles/008.jpg" alt="Famille 8" onclick="openSlideshow(7)" loading="lazy">
+        </div>
+    </main>
+
+    <!-- Slideshow Overlay -->
+    <div class="slideshow-overlay" onclick="closeSlideshow()">
+        <button class="close-slideshow" onclick="closeSlideshow()">&times;</button>
+        <button class="prev-slide" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next-slide" onclick="changeSlide(1)">&#10095;</button>
+        <div class="slideshow-content">
+            <img src="" alt="Slideshow Image" id="slideshow-image">
+        </div>
+        <!-- Autoplay Controls -->
+        <div class="autoplay-controls">
+            <button class="autoplay-toggle" onclick="toggleAutoplay()" title="Play/Pause (Spacebar)">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="speed-control">
+                <label for="speed-slider">Speed:</label>
+                <input type="range" id="speed-slider" min="2" max="6" value="4" step="0.5" oninput="updateAutoplaySpeed(this.value)">
+                <span id="speed-value">4s</span>
+            </div>
+        </div>
+    </div>

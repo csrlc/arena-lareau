@@ -1,0 +1,728 @@
+/* Theme variables */
+:root {
+    --calendar-bg: #ffffff;
+    --calendar-text: #1d1d1b;
+    --calendar-border: #e0e0e0;
+    --calendar-header: #f8f8f8;
+    --calendar-today-border: #ff0000; /* Red border for today */
+    --calendar-holiday: #ff6b6b;
+    --calendar-hover: #f0f0f0;
+    --calendar-dot-active: #4a90e2;
+    --calendar-dot-inactive: #d1d1d1;
+    --calendar-weekend-bg: rgba(241, 94, 104, 0.08);
+}
+
+[data-theme="dark"] {
+    --calendar-bg: #2d2d2b;
+    --calendar-text: #ffffff;
+    --calendar-border: #3d3d3b;
+    --calendar-header: #1d1d1b;
+    --calendar-today-border: #ff4d4d; /* Bright red border for dark mode */
+    --calendar-holiday: #c93d3d;
+    --calendar-hover: #3d3d3b;
+    --calendar-dot-active: #4a90e2;
+    --calendar-dot-inactive: #4d4d4b;
+    --calendar-weekend-bg: rgba(241, 94, 104, 0.15);
+}
+
+/* ===================================================================
+   FULL YEAR CALENDAR GRID (12 MONTHS)
+   =================================================================== */
+
+.events-full-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.events-month-container-full {
+    background: var(--calendar-bg);
+    border: 2px solid var(--calendar-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.events-month-container-full:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.events-month-header-full {
+    font-family: 'Black Ops One Regular', 'Black Ops One', cursive;
+    text-align: center;
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+    color: var(--calendar-text);
+    border-bottom: 2px solid var(--calendar-border);
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+.events-weekdays-mini-full {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--calendar-text);
+    opacity: 0.7;
+    text-align: center;
+}
+
+.events-weekdays-mini-full div {
+    padding: 0.5rem;
+}
+
+.events-days-grid-mini-full {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+}
+
+.events-day-mini-full {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    min-height: 35px;
+    border: 1px solid var(--calendar-border);
+    background: var(--calendar-bg);
+    color: var(--calendar-text);
+}
+
+.events-day-mini-full.blank {
+    background: transparent;
+    border-color: transparent;
+    cursor: default;
+}
+
+.events-day-mini-full.today {
+    border: 2px solid var(--calendar-today-border);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+
+.events-day-mini-full.event-ongoing {
+    background: #ffd700;
+    color: white;
+    border-color: #ffd700;
+}
+
+.events-day-mini-full.event-upcoming {
+    background: #5ecf71;
+    color: white;
+    border-color: #5ecf71;
+}
+
+.events-day-mini-full.event-completed {
+    background: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+}
+
+.events-day-mini-full:hover:not(.blank) {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================================================================
+   CHART-STYLE LEGEND
+   =================================================================== */
+
+.events-legend-chart {
+    background: var(--calendar-bg);
+    border: 2px solid var(--calendar-border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.legend-chart-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.legend-chart-header h3 {
+    font-family: 'Black Ops One Regular', 'Black Ops One', cursive;
+    color: var(--calendar-text);
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.legend-chart-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.legend-chart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--calendar-header);
+    border-radius: 8px;
+    border: 1px solid var(--calendar-border);
+    transition: all 0.2s ease;
+}
+
+.legend-chart-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.legend-chart-color {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.legend-chart-text {
+    flex: 1;
+}
+
+.legend-chart-text strong {
+    display: block;
+    font-family: 'Black Ops One Regular', 'Black Ops One', cursive;
+    color: var(--calendar-text);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.legend-chart-text span {
+    color: var(--calendar-text);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* ===================================================================
+   EVENTS LIST DETAILS
+   =================================================================== */
+
+.events-list {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--calendar-bg);
+    border: 2px solid var(--calendar-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.events-list h3 {
+    font-family: 'Black Ops One Regular', 'Black Ops One', cursive;
+    color: var(--calendar-text);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.event-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    background: var(--calendar-header);
+    border-left: 5px solid #5ecf71;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.event-detail:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.event-detail.tournament-detail {
+    border-left-color: #f15e68;
+    background: rgba(241, 94, 104, 0.1);
+}
+
+.event-detail.ongoing-detail {
+    border-left-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.event-detail.upcoming-detail {
+    border-left-color: #5ecf71;
+    background: rgba(94, 207, 113, 0.1);
+}
+
+.event-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--calendar-bg);
+    border: 2px solid var(--calendar-border);
+    font-size: 1.2rem;
+}
+
+.event-info {
+    flex: 1;
+}
+
+.event-info h4 {
+    font-family: 'Black Ops One Regular', 'Black Ops One', cursive;
+    color: var(--calendar-text);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.event-dates {
+    color: var(--calendar-text);
+    opacity: 0.8;
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.event-description {
+    color: var(--calendar-text);
+    opacity: 0.9;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+}
+
+.event-category {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.event-category.holiday {
+    background: #e74c3c;
+    color: white;
+}
+
+.event-category.religious {
+    background: #9b59b6;
+    color: white;
+}
+
+.event-category.national {
+    background: #e67e22;
+    color: white;
+}
+
+.event-category.sports {
+    background: #27ae60;
+    color: white;
+}
+
+.event-category.family {
+    background: #3498db;
+    color: white;
+}
+
+.event-category.scholarship {
+    background: #ffd700;
+    color: black;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .events-full-calendar-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .legend-chart-content {
+        grid-template-columns: 1fr;
+    }
+
+    .event-detail {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .event-icon {
+        align-self: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .events-full-calendar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .events-month-container-full {
+        padding: 1rem;
+    }
+
+    .events-month-header-full {
+        font-size: 1.1rem;
+    }
+
+    .events-day-mini-full {
+        font-size: 0.8rem;
+        min-height: 30px;
+    }
+
+    .events-weekdays-mini-full {
+        font-size: 0.7rem;
+    }
+
+    .events-weekdays-mini-full div {
+        padding: 0.25rem;
+    }
+
+    .events-legend-chart {
+        padding: 1.5rem;
+    }
+
+    .legend-chart-item {
+        padding: 0.75rem;
+    }
+
+    .legend-chart-color {
+        width: 35px;
+        height: 35px;
+    }
+
+    .events-list {
+        padding: 1.5rem;
+    }
+
+    .event-detail {
+        padding: 1rem;
+        margin: 0.75rem 0;
+    }
+}
+
+.events-calendar-grid-two-months {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.events-month-container {
+    background: var(--calendar-bg);
+    border: 2px solid var(--calendar-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.events-month-header {
+    font-family: 'Black Ops One Regular', 'Black Ops One', cursive;
+    text-align: center;
+    font-size: 1.3rem;
+    padding-bottom: 10px;
+    color: var(--calendar-text);
+    border-bottom: 2px solid var(--calendar-border);
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.events-weekdays-mini {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.events-weekdays-mini div {
+    font-family: 'Black Ops One Regular', 'Black Ops One', cursive;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 5px;
+    color: var(--calendar-text);
+    opacity: 0.7;
+}
+
+.events-days-grid-mini {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    min-height: 250px;
+}
+
+.event-day-mini {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+    border-radius: 6px;
+    border: 2px solid var(--calendar-border);
+    background: var(--calendar-bg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-day-mini.blank {
+    background: transparent;
+    border-color: transparent;
+}
+
+.event-day-number {
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: var(--calendar-text);
+    margin-bottom: 3px;
+}
+
+.event-name-mini {
+    font-size: 0.65rem;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    padding: 2px;
+}
+
+/* Day status colors - faded with hover highlight */
+.events-day-mini.day-past {
+    background: var(--error-color);
+    opacity: 0.5;
+    border-color: var(--error-color);
+    cursor: not-allowed;
+}
+.events-day-mini.day-past .event-day-number { color: #fff; }
+
+.events-day-mini.day-overloaded {
+    background: var(--error-color);
+    opacity: 0.6;
+    border-color: var(--error-color);
+    cursor: not-allowed;
+}
+.events-day-mini.day-overloaded .event-day-number { color: #fff; }
+
+.events-day-mini.day-ongoing {
+    background: var(--warning-color);
+    opacity: 0.7;
+    border-color: var(--warning-color);
+    cursor: pointer;
+}
+.events-day-mini.day-ongoing .event-day-number { color: #fff; }
+.events-day-mini.day-ongoing:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 165, 0, 0.4);
+}
+
+.events-day-mini.day-event {
+    background: var(--warning-color);
+    opacity: 0.7;
+    border-color: var(--warning-color);
+    cursor: pointer;
+}
+.events-day-mini.day-event .event-day-number { color: #fff; }
+.events-day-mini.day-event:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 165, 0, 0.4);
+}
+
+.events-day-mini.day-available {
+    background: var(--success-color);
+    opacity: 0.6;
+    border-color: var(--success-color);
+    cursor: pointer;
+}
+.events-day-mini.day-available .event-day-number { color: #fff; }
+.events-day-mini.day-available:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(94, 207, 113, 0.5);
+    background: var(--success-color);
+}
+
+/* Selected day state */
+.events-day-mini.selected {
+    background: var(--calendar-hover-bg) !important;
+    opacity: 1 !important;
+    border-color: var(--calendar-hover-bg);
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.6);
+}
+.events-day-mini.selected .event-day-number { color: #fff; }
+
+/* Legacy event type colors for compatibility */
+.event-day-mini.event-ongoing {
+    background: var(--warning-color);
+    opacity: 0.7;
+    border-color: var(--warning-color);
+}
+.event-day-mini.event-ongoing .event-day-number { color: #fff; }
+.event-day-mini.event-ongoing .event-name-mini { color: #fff; }
+
+.event-day-mini.event-upcoming {
+    background: var(--success-color);
+    opacity: 0.6;
+    border-color: var(--success-color);
+}
+.event-day-mini.event-upcoming .event-day-number { color: #fff; }
+
+.event-day-mini.event-completed {
+    background: #4a90e2;
+    opacity: 0.5;
+    border-color: #2d5f9e;
+}
+.event-day-mini.event-completed .event-day-number { color: #fff; }
+
+.event-day-mini.event-tournament {
+    background: var(--error-color);
+    opacity: 0.7;
+    border-color: var(--error-color);
+}
+.event-day-mini.event-tournament .event-day-number { color: #fff; }
+
+
+.event-day-mini.today {
+    border: 3px solid var(--calendar-today-border);
+    box-shadow: 0 0 10px var(--calendar-today-border);
+}
+
+.event-day-mini.today .event-day-number {
+    color: var(--calendar-today-border);
+    font-weight: 900;
+}
+
+
+/* Events Legend */
+.events-legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+    padding: 20px;
+    background: var(--calendar-header);
+    border-radius: 10px;
+    border: 2px solid var(--calendar-border);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: var(--calendar-text);
+    font-weight: 600;
+}
+
+.legend-box {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--calendar-border);
+}
+
+/* Events List Details */
+.events-list {
+    margin-top: 30px;
+    padding: 25px;
+    background: var(--calendar-bg);
+    border: 2px solid var(--calendar-border);
+    border-radius: 12px;
+}
+
+.events-list h3 {
+    font-family: 'Black Ops One Regular', 'Black Ops One', cursive;
+    color: var(--calendar-text);
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.event-detail {
+    padding: 15px;
+    margin: 10px 0;
+    background: var(--calendar-header);
+    border-left: 5px solid #5ecf71;
+    border-radius: 6px;
+    color: var(--calendar-text);
+    /* Apply the requested font */
+    font-family: 'Comic Italic', cursive;
+    font-size: 1.1rem;
+}
+
+.event-detail strong {
+    font-size: 1.2rem;
+    /* Comic Italic may not have a bold, so rely on size/icon */
+}
+
+.event-detail.tournament-detail {
+    border-left-color: #f15e68;
+    background: rgba(241, 94, 104, 0.1);
+}
+
+.event-detail.ongoing-detail {
+    border-left-color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.event-detail.upcoming-detail {
+    border-left-color: #5ecf71;
+    background: rgba(94, 207, 113, 0.1);
+}
+
+
+/* Responsive */
+@media (max-width: 968px) {
+    .events-calendar-grid-two-months {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .events-days-grid-mini {
+        gap: 3px;
+    }
+    
+    .events-weekdays-mini div {
+        font-size: 0.75rem;
+        padding: 2px;
+    }
+    
+    .event-day-mini {
+        padding: 3px;
+        border-width: 1px;
+    }
+    
+    .event-day-number {
+        font-size: 0.8rem;
+    }
+    
+    .event-name-mini {
+        font-size: 0.5rem;
+    }
+    
+    .events-legend {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .legend-item {
+        font-size: 0.9rem;
+    }
+}

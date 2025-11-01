@@ -1,0 +1,166 @@
+<main id="calendar" class="container container-calendar active" data-page="calendar"></main>
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-8">2025 - 2026</h1>
+        <div id="calendar-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+        </div>
+    </div>
+    <div id="selection-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm">
+            <h3 class="text-lg font-semibold mb-2">Faire une réservation</h3>
+            <p class="text-gray-700 mb-4" id="modal-date-display">Date: </p>
+            <div class="mb-4">
+                <label for="modal-time-input" class="block text-sm font-medium text-gray-700 mb-1">Plage horaire (9h-16h)</label>
+                <input type="text" id="modal-time-input" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="ex: 9:00 - 11:30">
+                <p class="text-xs text-gray-500 mt-1">Seules les heures entre 9h00 et 16h00 sont valides.</p>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="modal-cancel" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Annuler</button>
+                <button id="modal-confirm" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const calendarContainer = document.getElementById('calendar-container');
+    const modal = document.getElementById('selection-modal');
+    const modalDateDisplay = document.getElementById('modal-date-display');
+    const modalTimeInput = document.getElementById('modal-time-input');
+    const modalCancel = document.getElementById('modal-cancel');
+    const modalConfirm = document.getElementById('modal-confirm');
+
+    let selectedDate = null;
+    let selectedTimes = [];
+
+    // Generate months from September 2025 to August 2026
+    const months = [];
+    for (let year = 2025; year <= 2026; year++) {
+        for (let month = 0; month < 12; month++) {
+            if (year === 2025 && month < 8) continue; // Start from September 2025
+            if (year === 2026 && month > 7) continue; // End at August 2026
+            months.push({ year, month });
+        }
+    }
+
+    // Generate calendar for each month
+    months.forEach(({ year, month }) => {
+        const monthDiv = document.createElement('div');
+        monthDiv.className = 'bg-white rounded-lg shadow-md p-4';
+
+        const monthName = new Date(year, month).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+        monthDiv.innerHTML = `<h3 class="text-xl font-semibold mb-4 text-center">${monthName}</h3>`;
+
+        const calendarGrid = document.createElement('div');
+        calendarGrid.className = 'grid grid-cols-7 gap-1';
+
+        // Days of week
+        const daysOfWeek = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+        daysOfWeek.forEach(day => {
+            const dayHeader = document.createElement('div');
+            dayHeader.className = 'text-center font-medium text-gray-600 py-2';
+            dayHeader.textContent = day;
+            calendarGrid.appendChild(dayHeader);
+        });
+
+        // Get first day of month and number of days
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        // Empty cells for days before first day
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'py-2';
+            calendarGrid.appendChild(emptyCell);
+        }
+
+        // Days of month
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayCell = document.createElement('div');
+            dayCell.className = 'text-center py-2 cursor-pointer hover:bg-blue-100 rounded';
+            dayCell.textContent = day;
+
+            const currentDate = new Date(year, month, day);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (currentDate >= today) {
+                dayCell.addEventListener('click', () => {
+                    selectedDate = currentDate;
+                    modalDateDisplay.textContent = `Date: ${currentDate.toLocaleDateString('fr-FR')}`;
+                    modalTimeInput.value = '';
+                    modal.classList.remove('hidden');
+                });
+            } else {
+                dayCell.classList.add('text-gray-400', 'cursor-not-allowed');
+            }
+
+            calendarGrid.appendChild(dayCell);
+        }
+
+        monthDiv.appendChild(calendarGrid);
+        calendarContainer.appendChild(monthDiv);
+    });
+
+    // Modal events
+    modalCancel.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        selectedDate = null;
+    });
+
+    modalConfirm.addEventListener('click', () => {
+        const timeInput = modalTimeInput.value.trim();
+        if (!timeInput) {
+            alert('Veuillez entrer une plage horaire.');
+            return;
+        }
+
+        // Validate time format (simple check)
+        const timeRegex = /^(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})$/;
+        const match = timeInput.match(timeRegex);
+        if (!match) {
+            alert('Format invalide. Utilisez ex: 9:00 - 11:30');
+            return;
+        }
+
+        const startTime = match[1];
+        const endTime = match[2];
+
+        // Check if times are between 9:00 and 16:00
+        const startHour = parseInt(startTime.split(':')[0]);
+        const endHour = parseInt(endTime.split(':')[0]);
+        if (startHour < 9 || endHour > 16 || startHour >= endHour) {
+            alert('Les heures doivent être entre 9h00 et 16h00, et l\'heure de fin après l\'heure de début.');
+            return;
+        }
+
+        // Generate mailto
+        const subject = encodeURIComponent('Demande de réservation de glace');
+        const body = encodeURIComponent(`Bonjour,
+
+Je souhaite réserver du temps de glace pour la date suivante :
+
+Date: ${selectedDate.toLocaleDateString('fr-FR')}
+Plage horaire: ${timeInput}
+
+Veuillez me contacter pour confirmer la disponibilité et procéder à la réservation.
+
+Cordialement,
+[Votre nom]`);
+
+        const mailtoLink = `mailto:reservation@arena-lareau.com?subject=${subject}&body=${body}`;
+        window.location.href = mailtoLink;
+
+        modal.classList.add('hidden');
+        selectedDate = null;
+    });
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+            selectedDate = null;
+        }
+    });
+});
+</script>

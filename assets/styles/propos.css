@@ -1,0 +1,572 @@
+/* ===========================================
+   PROPOS PAGES - Modern Marvelous Layouts
+   =========================================== */
+
+/* Base container for all propos pages */
+.container-propos {
+  margin-top: 12vh;
+  padding-top: 8vh;
+  min-height: 80vh;
+  background: linear-gradient(135deg, var(--page-bg) 0%, rgba(241, 94, 104, 0.02) 100%);
+}
+
+/* Mission Page Styles */
+.container-mission {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container-mission h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-color), #ff6b8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.container-mission h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #ff6b8a);
+  border-radius: 2px;
+}
+
+.container-mission article {
+  background: var(--content-bg);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.container-mission article::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #ff6b8a, var(--success-color));
+}
+
+.container-mission h2 {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.container-mission h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.container-mission h3 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin: 2.5rem 0 1.5rem 0;
+  font-weight: 700;
+}
+
+.container-mission p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.container-mission ol {
+  padding-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.container-mission li {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.container-mission li::marker {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* Values section special styling */
+.container-mission h3:first-of-type + ol li {
+  background: linear-gradient(135deg, rgba(241, 94, 104, 0.05), rgba(52, 152, 219, 0.05));
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--accent-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container-mission h3:first-of-type + ol li:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 25px rgba(241, 94, 104, 0.15);
+}
+
+/* Objectives section special styling */
+.container-mission h3:last-of-type + ol li {
+  background: linear-gradient(135deg, rgba(94, 207, 113, 0.05), rgba(241, 94, 104, 0.05));
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--success-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container-mission h3:last-of-type + ol li:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 25px rgba(94, 207, 113, 0.15);
+}
+
+/* ===========================================
+   TEAM PAGE STYLES
+   =========================================== */
+
+.container-equipe {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container-equipe h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-color), #ff6b8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.container-equipe h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #ff6b8a);
+  border-radius: 2px;
+}
+
+.container-equipe > p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.team-member-card {
+  background: var(--content-bg);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-member-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #ff6b8a);
+}
+
+.team-member-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.15);
+}
+
+.team-member-card h2 {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.team-member-card h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.team-member-card p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.team-member-card a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.team-member-card a:hover {
+  color: #ff6b8a;
+  text-decoration: underline;
+}
+
+.team-contact-info {
+  background: linear-gradient(135deg, rgba(241, 94, 104, 0.05), rgba(52, 152, 219, 0.05));
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 1px solid rgba(241, 94, 104, 0.1);
+}
+
+.team-contact-info h3 {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.team-contact-info p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* ===========================================
+   CONTACT PAGE STYLES
+   =========================================== */
+
+.container-contacts {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.contacts {
+  background: var(--content-bg);
+  border-radius: 25px;
+  padding: 4rem 3rem;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.contacts::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--accent-color), #ff6b8a, var(--success-color));
+}
+
+.contacts h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent-color), #ff6b8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.contacts h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #ff6b8a);
+  border-radius: 2px;
+}
+
+.contacts h2 {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.contacts img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--accent-color);
+  box-shadow: 0 10px 30px rgba(241, 94, 104, 0.2);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contacts img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(241, 94, 104, 0.3);
+}
+
+.contacts h3 {
+  font-size: 1.6rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.contacts p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.contacts a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.contacts a:hover {
+  color: #ff6b8a;
+  text-decoration: underline;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.contact-method {
+  background: linear-gradient(135deg, rgba(241, 94, 104, 0.05), rgba(52, 152, 219, 0.05));
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(241, 94, 104, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-method:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(241, 94, 104, 0.15);
+}
+
+.contact-method i {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.contact-method h4 {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.contact-method p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+@media (max-width: 768px) {
+  .container-propos {
+    padding: 1rem;
+  }
+
+  .container-mission,
+  .container-equipe,
+  .container-contacts {
+    padding: 1rem;
+  }
+
+  .container-mission h1,
+  .container-equipe h1,
+  .contacts h1 {
+    font-size: 2.5rem;
+  }
+
+  .container-mission article {
+    padding: 2rem;
+  }
+
+  .container-mission h2 {
+    font-size: 2rem;
+  }
+
+  .container-mission h3 {
+    font-size: 1.5rem;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contacts {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+
+  .contacts img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-mission h1,
+  .container-equipe h1,
+  .contacts h1 {
+    font-size: 2rem;
+  }
+
+  .container-mission article {
+    padding: 1.5rem;
+  }
+
+  .container-mission h2 {
+    font-size: 1.8rem;
+  }
+
+  .container-mission h3 {
+    font-size: 1.3rem;
+  }
+
+  .contacts {
+    padding: 1.5rem 1rem;
+  }
+
+  .contacts h2 {
+    font-size: 1.6rem;
+  }
+
+  .contacts h3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* ===========================================
+   ANIMATIONS & EFFECTS
+   =========================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container-mission article,
+.team-member-card,
+.contacts {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.container-mission article:nth-child(1) { animation-delay: 0.1s; }
+.team-member-card:nth-child(1) { animation-delay: 0.1s; }
+.team-member-card:nth-child(2) { animation-delay: 0.2s; }
+.team-member-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Gradient text effect for headings */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-color), #ff6b8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Accent borders */
+.accent-border {
+  position: relative;
+}
+
+.accent-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), #ff6b8a);
+  border-radius: 2px;
+}

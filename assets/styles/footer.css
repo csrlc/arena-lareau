@@ -1,0 +1,214 @@
+/* ========================================
+   FOOTER STYLES - Complete Footer System
+   ======================================== */
+
+/* Footer Container - Main Element */
+.container-footer {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+
+.container-footer section h2 {
+  font-family: 'Raleway Regular', sans-serif;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+/* Footer Content */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8vh;
+    min-height: 8vh;
+    max-height: 8vh;
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(400px, 2fr) minmax(200px, 1fr);
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    color: var(--accent-color);
+    background: var(--content-bg);
+    box-shadow: 0 -2px 8px var(--shadow-color);
+    overflow: visible;
+    z-index: 1100;
+    transition: var(--theme-transition);
+}
+
+footer .footer-logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+footer .footer-logos-left, 
+footer .footer-logos-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-height: 8vh;
+    overflow: visible;
+}
+
+footer .footer-logos-left {
+    justify-content: flex-start;
+    align-content: center;
+}
+
+footer .footer-logos-right {
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.footer-content-center {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-height: 8vh;
+    overflow: hidden;
+}
+
+.footer-text {
+    color: var(--accent-color);
+    font-size: clamp(0.7rem, 0.8vw, 0.95rem);
+    line-height: 1.4;
+    font-weight: 500;
+    max-width: 100%;
+}
+
+.footer-text a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-text a:hover {
+    color: var(--success-color);
+}
+
+.footer-logo-link img {
+    max-height: clamp(24px, 3vh, 32px);
+    width: auto;
+    vertical-align: middle;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.footer-logo-link:hover img {
+    transform: scale(1.1);
+}
+
+.footer-logo-link i {
+    font-size: clamp(1.2rem, 3vh, 1.6rem);
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo-link:hover i {
+    transform: scale(1.15);
+}
+
+/* Theme-Aware Footer Logos */
+[data-theme='light'] .footer-logo-link .theme-sensitive-logo {
+    content: url('/assets/images/logos/arena-light.png');
+}
+
+[data-theme='dark'] .footer-logo-link .theme-sensitive-logo {
+    content: url('/assets/images/logos/arena-dark.png');
+}
+
+[data-theme='light'] .footer-logo-link img {
+    filter: brightness(1);
+}
+
+[data-theme='dark'] .footer-logo-link img {
+    filter: brightness(0.9);
+}
+
+/* Footer Hyperlink Image */
+.footer-hyperlink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.footer-hyperlink a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.footer-hyperlink a:hover {
+    transform: scale(1.05);
+}
+
+.hyperlink-image {
+    max-height: clamp(32px, 4vh, 40px);
+    width: auto;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: box-shadow 0.3s ease;
+}
+
+.hyperlink-image:hover {
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .map-full {
+        width: 94%;
+        left: 3%;
+        top: 160vh;
+        height: 70vh;
+    }
+
+    footer {
+        grid-template-columns: 1fr 2fr 1fr;
+        padding: 0 8px;
+        gap: 6px;
+        height: 8vh;
+        min-height: 8vh;
+    }
+
+    footer .footer-logos-left,
+    footer .footer-logos-right {
+        gap: 6px;
+    }
+
+    .footer-text {
+        font-size: clamp(0.6rem, 1vw, 0.75rem);
+        line-height: 1.3;
+    }
+
+    .footer-logo-link img {
+        max-height: clamp(20px, 2.5vh, 26px);
+    }
+
+    .footer-logo-link i {
+        font-size: clamp(1rem, 2.5vh, 1.3rem);
+    }
+
+    .footer-hyperlink {
+        margin-left: 10px;
+    }
+
+    .hyperlink-image {
+        max-height: clamp(24px, 3vh, 32px);
+    }
+
+    .calendar-wrapper {
+        max-width: 260px;
+    }
+}

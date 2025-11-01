@@ -1,0 +1,52 @@
+    <main id="feminin" class="container-galleries-feminin inactive">
+        <h1 data-i18n="women-gallery" data-i18n-json='{"fr":"Galerie Féminin","en":"Women\'s Gallery"}'>Galerie Féminin</h1>
+        
+        <div class="gallery-grid">
+            <img src="../../../assets/images/galeries/feminin/001.jpg" alt="Féminin 1" onclick="openSlideshow(0)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/002.jpg" alt="Féminin 2" onclick="openSlideshow(1)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/003.jpg" alt="Féminin 3" onclick="openSlideshow(2)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/004.jpg" alt="Féminin 4" onclick="openSlideshow(3)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/005.jpg" alt="Féminin 5" onclick="openSlideshow(4)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/006.jpg" alt="Féminin 6" onclick="openSlideshow(5)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/007.jpg" alt="Féminin 7" onclick="openSlideshow(6)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/008.jpg" alt="Féminin 8" onclick="openSlideshow(7)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/009.jpg" alt="Féminin 9" onclick="openSlideshow(8)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/010.jpg" alt="Féminin 10" onclick="openSlideshow(9)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/011.jpg" alt="Féminin 11" onclick="openSlideshow(10)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/012.jpg" alt="Féminin 12" onclick="openSlideshow(11)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/013.jpg" alt="Féminin 13" onclick="openSlideshow(12)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/014.jpg" alt="Féminin 14" onclick="openSlideshow(13)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/015.jpg" alt="Féminin 15" onclick="openSlideshow(14)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/016.jpg" alt="Féminin 16" onclick="openSlideshow(15)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/017.jpg" alt="Féminin 17" onclick="openSlideshow(16)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/018.jpg" alt="Féminin 18" onclick="openSlideshow(17)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/019.jpg" alt="Féminin 19" onclick="openSlideshow(18)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/020.jpg" alt="Féminin 20" onclick="openSlideshow(19)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/021.jpg" alt="Féminin 21" onclick="openSlideshow(20)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/022.jpg" alt="Féminin 22" onclick="openSlideshow(21)" loading="lazy">
+            <img src="../../../assets/images/galeries/feminin/023.jpg" alt="Féminin 23" onclick="openSlideshow(22)" loading="lazy">
+        </div>
+    </main>
+
+    <!-- Slideshow Overlay -->
+    <div class="slideshow-overlay" onclick="closeSlideshow()">
+        <button class="close-slideshow" onclick="closeSlideshow()">&times;</button>
+        <button class="prev-slide" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next-slide" onclick="changeSlide(1)">&#10095;</button>
+        <div class="slideshow-content">
+            <img src="" alt="Slideshow Image" id="slideshow-image">
+        </div>
+        <!-- Autoplay Controls -->
+        <div class="autoplay-controls">
+            <button class="autoplay-toggle" onclick="toggleAutoplay()" title="Play/Pause (Spacebar)">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="speed-control">
+                <label for="speed-slider">Speed:</label>
+                <input type="range" id="speed-slider" min="2" max="6" value="4" step="0.5" oninput="updateAutoplaySpeed(this.value)">
+                <span id="speed-value">4s</span>
+            </div>
+        </div>
+    </div>
+
+
