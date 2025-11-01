@@ -5,13 +5,14 @@
             grid-template-columns: 2fr 8fr 2fr;
             height: var(--navbar-height);
             width: 100%;
-            background-color: var(--color-bg);
+            background-color: var(--content-bg);
             border-bottom: 1px solid var(--border-color);
             padding: 0 1.5rem;
             position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
+            transition: var(--theme-transition);
         }
 
         /* --- 3. Grid Section Placement --- */
@@ -60,10 +61,15 @@
         }
 
         /* Theme-aware logos */
-        .dark-logo { display: none; }
-        .light-logo { display: block; }
-        body.theme-dark .dark-logo { display: block; }
-        body.theme-dark .light-logo { display: none; }
+        .site-logo { display: none; }
+        .site-logo[data-theme="light"] { display: block; }
+        .site-logo[data-theme="dark"] { display: none; }
+        
+        [data-theme="dark"] .site-logo[data-theme="light"] { display: none; }
+        [data-theme="dark"] .site-logo[data-theme="dark"] { display: block; }
+        
+        [data-theme="light"] .site-logo[data-theme="light"] { display: block; }
+        [data-theme="light"] .site-logo[data-theme="dark"] { display: none; }
 
         /* --- 5. Navigation Links & Buttons (General) --- */
         .navbar button,
@@ -93,17 +99,16 @@
         .navbar .main-nav-left .menuitem:hover,
         .navbar .main-nav-right .dropdown-toggle:hover {
             background-color: var(--text-color);
-            color: var(--color-bg);
+            color: var(--accent-color);
             text-decoration: underline;
-            color: var(--error-color);
-            text-decoration-color: var(--error-color);
+            text-decoration-color: var(--accent-color);
             text-decoration-thickness: 2px;
             text-underline-offset: 4px;
         }
         
         /* Inner 'a' tag on hover when parent button is hovered */
         .navbar .main-nav-left .menuitem:hover a {
-             color: var(--color-bg); 
+             color: var(--accent-color); 
         }
 
         /* --- 6. Top-Right Toggles --- */
@@ -126,8 +131,8 @@
         /* Theme Toggle Icons */
         .theme-icon.dark { display: none; }
         .theme-icon.light { display: block; }
-        body.theme-dark .theme-icon.dark { display: block; }
-        body.theme-dark .theme-icon.light { display: none; }
+        [data-theme="dark"] .theme-icon.dark { display: block; }
+        [data-theme="dark"] .theme-icon.light { display: none; }
 
         /* --- 7. "About" Dropdown (main-nav-right) --- */
         .dropdown {
@@ -145,16 +150,16 @@
             position: absolute;
             top: 100%;
             right: 0;
-            background-color: var(--color-bg);
+            background-color: var(--content-bg);
             border: 1px solid var(--border-color);
             border-radius: 5px;
             min-width: 180px;
             padding: 0.5rem 0;
             z-index: 2001;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px var(--shadow-color);
             visibility: hidden;
             opacity: 0;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
+            transition: opacity 0.2s ease, visibility 0.2s ease, var(--theme-transition);
         }
 
         .dropdown.active .dropdown-menu {
@@ -174,7 +179,7 @@
         /* Requested Dropdown Item Hover Effect */
         .dropdown-menu a:hover {
             background-color: var(--text-color);
-            color: var(--error-color);
+            color: var(--accent-color);
             text-decoration: underline;
         }
 
@@ -185,13 +190,13 @@
             left: -350px; /* Start off-screen */
             width: 330px;
             height: 100%;
-            background-color: var(--color-bg-alt);
+            background-color: var(--card-bg);
             border-right: 1px solid var(--border-color);
             z-index: 2000;
             padding: 1.5rem;
             overflow-y: auto;
-            transition: left 0.3s cubic-bezier(0.77, 0, 0.175, 1);
-            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            transition: left 0.3s cubic-bezier(0.77, 0, 0.175, 1), var(--theme-transition);
+            box-shadow: 5px 0 15px var(--shadow-color);
             display: block;
             visibility: visible;
         }
@@ -223,45 +228,62 @@
 
         .galeries-menu h2 {
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
             padding-bottom: 0.5rem;
+            color: var(--text-color);
         }
 
         .galeries-menu a {
             display: block;
             padding: 0.75rem 0.25rem;
             border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+            transition: var(--theme-transition);
         }
 
         .galeries-menu a:hover {
-            background-color: var(--color-bg);
-            color: var(--primary-color);
+            background-color: var(--hover-bg);
+            color: var(--accent-color);
             text-decoration: none;
         }
 
-        /* --- 9. Language Switching (Demo) --- */
-        /* Hide inactive language blocks */
+        /* --- 9. Language Switching --- */
+        /* Hide inactive language blocks by default */
         .english-active,
         .galeries-trigger-english,
         .galeries-menu-english {
             display: none;
         }
 
-        /* Show active language blocks */
-        body.lang-fr .french-active,
-        body.lang-fr .galeries-trigger-fench, /* Typo in HTML, matching it */
-        body.lang-fr .galeries-menu-french {
+        .french-active,
+        .galeries-trigger-fench,
+        .galeries-menu-french {
             display: block;
         }
 
-        body.lang-en .english-active,
-        body.lang-en .galeries-trigger-english,
-        body.lang-en .galeries-menu-english {
+        /* Show French content when French is active */
+        [data-current-language="fr"] .french-active,
+        [data-current-language="fr"] .galeries-trigger-fench,
+        [data-current-language="fr"] .galeries-menu-french {
             display: block;
         }
-        
-        /* Fix for french trigger */
-        body.lang-en .galeries-trigger-fench {
+
+        [data-current-language="fr"] .english-active,
+        [data-current-language="fr"] .galeries-trigger-english,
+        [data-current-language="fr"] .galeries-menu-english {
+            display: none;
+        }
+
+        /* Show English content when English is active */
+        [data-current-language="en"] .english-active,
+        [data-current-language="en"] .galeries-trigger-english,
+        [data-current-language="en"] .galeries-menu-english {
+            display: block;
+        }
+
+        [data-current-language="en"] .french-active,
+        [data-current-language="en"] .galeries-trigger-fench,
+        [data-current-language="en"] .galeries-menu-french {
             display: none;
         }
 
@@ -325,12 +347,12 @@
                 top: calc(var(--navbar-height) - 1px); /* Position below navbar */
                 left: -1rem; /* Align to viewport edge */
                 width: 100vw;
-                background-color: var(--color-bg);
+                background-color: var(--content-bg);
                 border: none;
                 border-top: 1px solid var(--border-color);
                 border-bottom: 1px solid var(--border-color);
                 border-radius: 0;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                box-shadow: 0 4px 12px var(--shadow-color);
             }
             
             .mobile-menu.active .dropdown-menu {
@@ -348,7 +370,7 @@
             
             .mobile-menu .dropdown-menu a:hover {
                  background-color: var(--text-color);
-                 color: var(--error-color);
+                 color: var(--accent-color);
                  text-decoration: underline;
             }
         }

@@ -181,41 +181,50 @@ h1,h2,h3{font-family:'Black Ops One Regular',sans-serif}
   background: var(--content-bg);
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px var(--shadow-color);
   font-size: 0.9rem;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, var(--theme-transition);
   z-index: 950;
+  color: var(--text-color);
 }
 
-.scroll-top,
-.scroll-bottom {
+.scroll-top {
+  bottom: 12vh;
   position: fixed;
-  right: 20px;
-  width: 50px;
-  height: 50px;
+}
+
+.scroll-bottom {
+  top: 16vh;
+  position: fixed;
+}
+
+.scroll-btn {
+  position: fixed;
+  right: 4vw;
+  width: 2.4vh;
+  height: auto;
   background: var(--content-bg);
   border: 2px solid var(--accent-color);
   color: var(--accent-color);
   font-size: 1.8rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, var(--theme-transition);
   z-index: 950;
   opacity: 0.8;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
-.scroll-top:hover,
-.scroll-bottom:hover {
+.scroll-btn:hover {
   opacity: 1;
   transform: scale(1.15);
   background: var(--accent-color);
-  color: white;
+  color: var(--content-bg);
 }
 
 .scroll-top {
@@ -231,6 +240,77 @@ body{padding-top:12vh;padding-bottom:8vh;}
 .container{width:92%;margin-left:4%;padding:0 18px;height:100%}
 .container-propos{margin-top:12vh;padding-top:8vh;}
 .hero{background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0));padding:32px;border-radius:8px;margin-bottom:20px;background-color:var(--content-bg)}
+
+/* Logo Overlay System */
+.logo-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.logo-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.logo-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+
+.logo-overlay-content {
+  position: relative;
+  z-index: 3010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: logoFadeIn 0.6s ease;
+}
+
+.logo-overlay-image {
+  width: 80vw;
+  height: auto;
+  max-width: 800px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+}
+
+.logo-overlay-image:hover {
+  transform: scale(1.2);
+}
+
+@keyframes logoFadeIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hide non-active theme overlays */
+.logo-overlay:not(.active) {
+  display: none;
+}
 
 /* Ad overlay */
 .adv-overlay{

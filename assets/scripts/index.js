@@ -179,6 +179,9 @@ function setLanguage(lang) {
     localStorage.setItem('language', lang);
 }
 
+// Expose globally for navbar
+window.setLanguage = setLanguage;
+
 function initTheme() {
     // Default to dark theme if no saved preference
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -211,6 +214,9 @@ function setTheme(theme) {
     // Dispatch custom event for other components to react
     document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
 }
+
+// Expose globally for navbar
+window.setTheme = setTheme;
 
 function updateThemeIcons(theme) {
     const lightIcons = document.querySelectorAll('.theme-icon.light');
@@ -285,7 +291,7 @@ function setupAdOverlay(){
     adImage.style.cursor = 'pointer';
     adImage.addEventListener('click', (e) => {
       e.stopPropagation();
-      window.location.href = './bourse.html';
+      window.open('https://blewup.github.io/arena-lareau/bourse.html', '_blank');
     });
   }
   
@@ -406,7 +412,8 @@ const IdleLogo = (function(){
 })();
 
 function showLogoOverlay() {
-  const overlay = document.querySelector('.logo-overlay.theme-' + getCurrentTheme());
+  const theme = getCurrentTheme();
+  const overlay = document.querySelector('.logo-overlay.theme-' + theme);
   if (overlay && !overlay.classList.contains('active')) {
     // Hide other theme overlay
     document.querySelectorAll('.logo-overlay').forEach(o => o.classList.remove('active'));
@@ -414,12 +421,15 @@ function showLogoOverlay() {
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Auto-hide after 2 seconds
+    // Auto-hide after 3 seconds
     setTimeout(() => {
       hideLogoOverlay();
-    }, 2000);
+    }, 3000);
   }
 }
+
+// Expose globally for scroll system
+window.showLogoOverlay = showLogoOverlay;
 
 function hideLogoOverlay() {
   document.querySelectorAll('.logo-overlay').forEach(overlay => {
@@ -428,19 +438,41 @@ function hideLogoOverlay() {
   document.body.style.overflow = '';
 }
 
-// Click to close logo overlay
-document.addEventListener('click', (e) => {
-  if (e.target.closest('.logo-overlay')) {
-    hideLogoOverlay();
-  }
-});
-
-// ESC key to close
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    hideLogoOverlay();
-  }
-});
+function setupLogoOverlayInteraction() {
+  // Setup click handlers for logo overlays
+  document.querySelectorAll('.logo-overlay').forEach(overlay => {
+    const backdrop = overlay.querySelector('.logo-overlay-backdrop');
+    const logoImage = overlay.querySelector('.logo-overlay-image');
+    
+    // Click on backdrop to close
+    if (backdrop) {
+      backdrop.addEventListener('click', hideLogoOverlay);
+    }
+    
+    // Click on logo to navigate to bourse.html
+    if (logoImage) {
+      logoImage.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.open('https://blewup.github.io/arena-lareau/bourse.html', '_blank');
+        hideLogoOverlay();
+      });
+    }
+    
+    // Click anywhere on overlay container to close
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        hideLogoOverlay();
+      }
+    });
+  });
+  
+  // ESC key to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hideLogoOverlay();
+    }
+  });
+}
 
 // Navigation manager
 class NavigationManager {
@@ -519,13 +551,44 @@ class NavigationManager {
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('DOM Content Loaded - Starting initialization');
-  
+
   // Initialize navigation manager
   window.navManager = new NavigationManager();
 
   // Load all main content sections with src attribute
   const loadPromises = [];
-  
+
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  const scrollBottomBtn = document.getElementById('scrollBottomBtn');
+  if (scrollTopBtn && scrollBottomBtn) {
+
+    // Show/hide buttons based on scroll position
+    window.onscroll = () => {
+        // Show "scroll to top" button if not at the top
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollTopBtn.style.display = "flex";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+
+        // Show "scroll to bottom" button if not at the bottom
+        // (Calculates if scroll position is near the bottom)
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 200)) {
+            scrollBottomBtn.style.display = "none";
+        } else {
+            scrollBottomBtn.style.display = "flex";
+        }
+    };
+    // Click event for "Scroll to Top"
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    // Click event for "Scroll to Bottom"
+    scrollBottomBtn.addEventListener('click', () => {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    });
+  }
+
   // Load navbar and footer (always active)
   const navbarEl = document.querySelector('main.main-navbar[src]');
   console.log('Navbar element:', navbarEl);
@@ -642,6 +705,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Setup logo over-scroll and idle behavior
   try { setupLogoOverScroll(); } catch(e){ console.warn('setupLogoOverScroll failed', e); }
   try { IdleLogo.start(); } catch(e){ console.warn('IdleLogo failed to start', e); }
+  try { setupLogoOverlayInteraction(); } catch(e){ console.warn('setupLogoOverlayInteraction failed', e); }
   
   // Update logo after content loads
   updateLogo();
@@ -919,7 +983,20 @@ function initializeFormCaching() {
       console.log(`Auto-save enabled for form: ${formId}`);
     }
   });
+  
+  // Also setup forms without data-cache-form but with IDs
+  const formsWithIds = document.querySelectorAll('form[id]:not([data-cache-form])');
+  formsWithIds.forEach(form => {
+    const formId = form.id;
+    if (formId) {
+      window.formCache.setupAutoSave(form, formId);
+      console.log(`Auto-save enabled for form: ${formId}`);
+    }
+  });
 }
+
+// Global function to refresh form caching setup
+window.refreshFormCaching = initializeFormCaching;
 
 // Initialize form caching when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -929,5 +1006,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Re-initialize when new content is loaded
 document.addEventListener('contentLoaded', initializeFormCaching);
+document.addEventListener('global:loaded', initializeFormCaching);
 
 console.log('index.js loaded - Theme system and form cache initialized');

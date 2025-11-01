@@ -65,20 +65,20 @@
             
             // --- 5. Language Toggle Logic ---
             langToggle?.addEventListener('click', () => {
-                const currentLang = body.getAttribute('data-language') || 'fr';
+                const currentLang = document.documentElement.getAttribute('data-current-language') || 'fr';
                 const newLang = currentLang === 'fr' ? 'en' : 'fr';
                 
-                // Update body attribute
-                body.setAttribute('data-language', newLang);
-                
-                // Update button text
-                langToggle.textContent = newLang.toUpperCase();
-                
-                // Update all elements with data-i18n
-                translatePage(newLang);
-                
-                // Save preference
-                localStorage.setItem('preferred-language', newLang);
+                // Use the global language system from index.js
+                if (window.setLanguage) {
+                    window.setLanguage(newLang);
+                } else {
+                    // Fallback if global function not available
+                    document.documentElement.setAttribute('data-current-language', newLang);
+                    body.setAttribute('data-language', newLang);
+                    langToggle.textContent = newLang.toUpperCase();
+                    translatePage(newLang);
+                    localStorage.setItem('language', newLang);
+                }
                 
                 // Dispatch event for other scripts to update
                 window.dispatchEvent(new CustomEvent('languageChange', { detail: { language: newLang } }));
@@ -86,14 +86,18 @@
 
             // --- 6. Theme Toggle Logic ---
             themeToggle?.addEventListener('click', () => {
-                const currentTheme = body.getAttribute('data-theme') || 'light';
+                const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
                 const newTheme = currentTheme === 'light' ? 'dark' : 'light';
                 
-                // Update body attribute
-                body.setAttribute('data-theme', newTheme);
-                
-                // Save preference
-                localStorage.setItem('preferred-theme', newTheme);
+                // Use the global theme system from index.js
+                if (window.setTheme) {
+                    window.setTheme(newTheme);
+                } else {
+                    // Fallback if global function not available
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    body.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                }
                 
                 // Dispatch event for other scripts
                 window.dispatchEvent(new CustomEvent('themeChange', { detail: { theme: newTheme } }));
@@ -123,15 +127,15 @@
             }
             
             // --- 8. Load Saved Preferences ---
-            const savedLang = localStorage.getItem('preferred-language') || 'fr';
-            const savedTheme = localStorage.getItem('preferred-theme') || 'light';
+            // The preferences are loaded by the global theme/language system
+            // Just ensure the toggle buttons reflect the current state
+            const currentLang = document.documentElement.getAttribute('data-current-language') || 'fr';
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             
-            body.setAttribute('data-language', savedLang);
-            body.setAttribute('data-theme', savedTheme);
+            if (langToggle) langToggle.textContent = currentLang.toUpperCase();
             
-            if (langToggle) langToggle.textContent = savedLang.toUpperCase();
-            
-            translatePage(savedLang);
+            // Ensure page translation matches current language
+            translatePage(currentLang);
 
             // --- 9. Click Outside to Close Menus ---
             window.addEventListener('click', (e) => {
